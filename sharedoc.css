@@ -1,3 +1,7 @@
+/*  ------------------------------------------------------------
+                        Default Page Styling
+*/
+
 @viewport {
     width: device-width;
     zoom: 1.0;
@@ -5,6 +9,13 @@
 
 html {
     font-family: sans-serif;
+}
+
+body {
+    background-color: #D9D9D9;
+    transition: background-color 0.75s ease;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 h1,
@@ -46,17 +57,94 @@ p {
     display: inline-flex;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+button:hover {
     color: #333333;
-    cursor: default;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footer-text {
+    text-align: center;
+    color: #3F52FF;
+}
+
+.links {
+    text-align: center;
+    padding-bottom: 1%;
+}
+
+/*  ------------------------------------------------------------
+                        Dark Mode Styling
+*/
+
+.dark-mode {
+    background-color: #333333;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode p,
+.dark-mode .navbar a,
+.dark-mode .footer-text,
+.dark-mode select {
+    color: #C7CCF1;
+}
+
+.dark-mode .navbar {
+    background-color: #666666;
+    border: 2px solid #C7CCF1;
+}
+
+.dark-mode .navbar a:hover {
+    color: #333333;
+}
+
+.dark-mode .announcements button,
+.dark-mode .postedinfo button,
+.dark-mode .announcements-title button,
+.dark-mode .postedinfo-title button {
+    color: #C7CCF1;
+}
+
+.dark-mode .announcements-container,
+.dark-mode .postedinfo-container {
+    background-color: #666666;
+    border: 2px solid #C7CCF1;
+}
+
+/* Changes "Dark Mode" navbar text to red when disabled */
+body:not(.dark-mode) .navbar .dark-mode-button {
+    color: #ff6961;
+}
+
+/* Changes "Dark Mode" navbar text to green when enabled */
+body.dark-mode .navbar .dark-mode-button {
+    color: #77DD77;
+}
+
+/* Inverts logo colour when dark mode toggled */
+.dark-mode .logo {
+    filter: invert(100%);
+}
+
+/*  ------------------------------------------------------------
+                        Announcements Page Styling
+*/
 
 .announcements-title {
     text-align: left;
+    display: inline-flex;
 }
 
 .postedinfo-title {
     text-align: right;
+    display: inline-flex;
 }
 
 .title-container {
@@ -74,6 +162,16 @@ p {
     flex-direction: column;
 }
 
+.group-dropdown {
+    display: inline-flex;
+    position: absolute;
+    left: 50%;
+    margin-top: 3%;
+    border: none;
+    background-color: transparent;
+    color: #3F52FF;
+}
+
 .announcements-container,
 .postedinfo-container {
     position: relative;
@@ -87,9 +185,12 @@ p {
     margin-bottom: 2%;
 }
 
-.announcements p,
-.postedinfo p {
-    bottom: 5%;
+.content-container h2 {
+    margin-bottom: 1%; /* Adjust this value as needed */
+}
+
+.announcements-container p {
+    width: 80%;
 }
 
 .announcements-container {
@@ -104,7 +205,7 @@ p {
     height: 10vh;
     text-align: right;
     margin-left: auto;
-    width: 50%;
+    width: 40%;
     border-radius: 25px;
 }
 
@@ -128,79 +229,14 @@ p {
 }
 
 .postedinfo button {
+    display: inline-flex;
     position: absolute;
     right: 5%;
-    bottom: 10%;
+    top: 70%;
 }
 
 .expand-react-button-container {
     position: absolute;
     top: 15%;
     right: 5%;
-}
-
-body {
-    background-color: #D9D9D9;
-    transition: background-color 0.75s ease;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.dark-mode {
-    background-color: #333333;
-}
-
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode p,
-.dark-mode button,
-.dark-mode .navbar a,
-.dark-mode .footer-text {
-    color: #C7CCF1;
-}
-
-.dark-mode .navbar {
-    background-color: #3F52FF;
-    border: 2px solid #C7CCF1;
-}
-
-.dark-mode .navbar a:hover {
-    color: #333333;
-}
-
-.dark-mode .announcements-container,
-.dark-mode .postedinfo-container {
-    background-color: #666666;
-}
-
-/* Changes "Dark Mode" navbar text to red when disabled */
-body:not(.dark-mode) .navbar .dark-mode-button {
-    color: #ff6961;
-}
-
-/* Changes "Dark Mode" navbar text to green when enabled */
-body.dark-mode .navbar .dark-mode-button {
-    color: #77DD77;
-}
-
-/* Inverts logo colour when dark mode toggled */
-.dark-mode .logo {
-    filter: invert(100%);
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.footer-text {
-    text-align: center;
-    color: #3F52FF;
-}
-
-.links {
-    text-align: center;
-    padding-bottom: 1%;
 }
