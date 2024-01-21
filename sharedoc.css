@@ -21,6 +21,7 @@ body {
 h1,
 h2,
 p,
+label,
 .navbar a {
     color: #3F52FF;
 }
@@ -213,13 +214,14 @@ body.dark-mode .navbar .dark-mode-button {
 
 .announcements button,
 .postedinfo button,
-.announcements-title button {
+.announcements-title button,
+.profile-image-signout-margin button,
+.groups-margin button {
     display: inline-flex;
-    appearance: none;
-    background-color: transparent;
-    border: none;
+    background-color: #C7CCF1;
+    border: 2px solid #3F52FF;
+    border-radius: 5px;
     font-size: 17px;
-    font-weight: bold;
     color: #3F52FF;
 }
 
@@ -236,7 +238,88 @@ body.dark-mode .navbar .dark-mode-button {
     top: 75%;
 }
 
-.expand-react-button-container {
+/*  ------------------------------------------------------------
+                        Account Page Styling
+*/
+
+.profile-image-signout-margin {
     display: inline-flex;
-    position: relative;
+    flex-direction: column;
+    width: inherit;
+    align-items: center;
+}
+
+.profile-image-signout-margin img {
+    align-items: center;
+    padding-bottom: 5%;
+}
+
+.center-buttons {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-buttons button {
+    margin-bottom: 5%;
+}
+
+.personal-details-margin {
+    display: inline-flex;
+    align-items: left;
+    justify-content: space-between;
+    flex-direction: column;
+    width: inherit;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.personal-details-input h2 {
+    text-align: center;
+}
+
+.personal-details-input {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2%;
+}
+
+.personal-details-input label {
+    margin-right: 10px; /* Add some spacing between label and textarea */
+}
+
+.personal-details-input textarea {
+    flex: 1; /* Allow textarea to expand and fill available space */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.groups-margin {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: center;
+}
+
+.current-groups,
+.previous-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+    grid-gap: 5%; /* Adjust the spacing between grid items */
+}
+
+.groups-container {
+    width: 100%;
+    box-shadow: 10px 10px 10px #666666;
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    background-color: white;
+    margin-bottom: 2%;
+}
+
+.download-delete-buttons {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 2%;
 }
