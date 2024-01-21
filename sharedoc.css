@@ -20,7 +20,8 @@ body {
 
 h1,
 h2,
-p {
+p,
+.navbar a {
     color: #3F52FF;
 }
 
@@ -45,13 +46,13 @@ p {
     padding-right: 1%;
     border-radius: 25px;
     justify-content: space-between;
+    box-shadow: 10px 10px 10px #666666;
     align-items: center;
     border: 2px solid #3F52FF;
     transition: background-color 0.75s ease;
 }
 
 .navbar a {
-    color: #3F52FF;
     text-decoration: none;
     font-size: 17px;
     display: inline-flex;
@@ -60,13 +61,31 @@ p {
 .navbar a:hover,
 button:hover {
     color: #333333;
+    cursor: pointer;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-container {
+    display: flex;
+}
+
+.announcements,
+.postedinfo {
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
-    position: fixed;
+    margin-top: 10%;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: -1;
+    position: fixed;
 }
 
 .footer-text {
@@ -96,11 +115,6 @@ footer {
     color: #C7CCF1;
 }
 
-.dark-mode .navbar {
-    background-color: #666666;
-    border: 2px solid #C7CCF1;
-}
-
 .dark-mode .navbar a:hover {
     color: #333333;
 }
@@ -113,7 +127,8 @@ footer {
 }
 
 .dark-mode .announcements-container,
-.dark-mode .postedinfo-container {
+.dark-mode .postedinfo-container,
+.dark-mode .navbar {
     background-color: #666666;
     border: 2px solid #C7CCF1;
 }
@@ -147,26 +162,9 @@ body.dark-mode .navbar .dark-mode-button {
     display: inline-flex;
 }
 
-.title-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.content-container {
-    display: flex;
-}
-
-.announcements,
-.postedinfo {
-    display: flex;
-    flex-direction: column;
-}
-
 .group-dropdown {
+    position: relative;
     display: inline-flex;
-    position: absolute;
-    left: 50%;
-    margin-top: 3%;
     border: none;
     background-color: transparent;
     color: #3F52FF;
@@ -174,10 +172,9 @@ body.dark-mode .navbar .dark-mode-button {
 
 .announcements-container,
 .postedinfo-container {
-    position: relative;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 18px 200px -60px black;
+    box-shadow: 10px 10px 10px #666666;
     border: 2px solid #3F52FF;
     padding: 1rem 3rem;
     background-color: white;
@@ -185,18 +182,23 @@ body.dark-mode .navbar .dark-mode-button {
     margin-bottom: 2%;
 }
 
-.content-container h2 {
-    margin-bottom: 1%; /* Adjust this value as needed */
+.announcements-container p {
+    display: none;
 }
 
-.announcements-container p {
-    width: 80%;
+.announcements-container.expand p {
+    display: block;
+}
+
+.announcements-container.expand {
+    width: 90vh;
+    height: inherit;
 }
 
 .announcements-container {
-    height: 15vh;
+    height: inherit;
     text-align: left;
-    width: 100%;
+    width: 90vh;
     position: relative;
     border-radius: 100px;
 }
@@ -221,22 +223,20 @@ body.dark-mode .navbar .dark-mode-button {
     color: #3F52FF;
 }
 
-.announcements-title button {
-    position: absolute;
-    display: flex;
-    left: 46%;
-    top: 15%;
+.announcements button:hover,
+.postedinfo button:hover,
+.announcements-title button:hover {
+    color: #333333;
 }
 
 .postedinfo button {
     display: inline-flex;
     position: absolute;
     right: 5%;
-    top: 70%;
+    top: 75%;
 }
 
 .expand-react-button-container {
-    position: absolute;
-    top: 15%;
-    right: 5%;
+    display: inline-flex;
+    position: relative;
 }
