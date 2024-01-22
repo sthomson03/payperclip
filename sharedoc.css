@@ -26,6 +26,14 @@ label,
     color: #3F52FF;
 }
 
+input {
+    color: #3F52FF;
+    border: 1px solid #3F52FF;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
 .header-container {
     display: flex;
     align-items: center;
@@ -61,7 +69,7 @@ label,
 
 .navbar a:hover,
 button:hover {
-    color: #333333;
+    color: white;
     cursor: pointer;
 }
 
@@ -139,14 +147,57 @@ body:not(.dark-mode) .navbar .dark-mode-button {
     color: #ff6961;
 }
 
+body:not(.dark-mode) .navbar .dark-mode-button:hover {
+    color: white;
+}
+
 /* Changes "Dark Mode" navbar text to green when enabled */
 body.dark-mode .navbar .dark-mode-button {
     color: #77DD77;
 }
 
+body.dark-mode .navbar .dark-mode-button:hover {
+    color: white;
+}
+
 /* Inverts logo colour when dark mode toggled */
 .dark-mode .logo {
     filter: invert(100%);
+}
+
+/*  ------------------------------------------------------------
+            Register, Login, Forgotten Password Page Styling
+*/
+
+.register-login-container {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.register-login-container img {
+    padding-bottom: 2%;
+}
+
+.register-login-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-login-input input,
+.register-login-input select,
+.register-login-input button {
+    margin-bottom: 5%; /* Adjust the value based on your design preference */
+}
+
+.register-login-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+    grid-gap: 5%; /* Adjust the spacing between grid items */
+    text-align: center;
+    padding-bottom: 10%;
 }
 
 /*  ------------------------------------------------------------
@@ -216,10 +267,15 @@ body.dark-mode .navbar .dark-mode-button {
 .postedinfo button,
 .announcements-title button,
 .profile-image-signout-margin button,
-.groups-margin button {
+.groups-margin button,
+.register-input button,
+.personal-details-input button,
+.register-container button,
+.register-login-buttons button {
     display: inline-flex;
+    text-align: center;
     background-color: #C7CCF1;
-    border: 2px solid #3F52FF;
+    border: 1px solid #3F52FF;
     border-radius: 5px;
     font-size: 17px;
     color: #3F52FF;
@@ -227,8 +283,14 @@ body.dark-mode .navbar .dark-mode-button {
 
 .announcements button:hover,
 .postedinfo button:hover,
-.announcements-title button:hover {
-    color: #333333;
+.announcements-title button:hover,
+.profile-image-signout-margin button:hover,
+.groups-margin button:hover,
+.register-input button:hover,
+.personal-details-input button:hover,
+.register-container button:hover,
+.register-login-buttons button:hover {
+    color: white;
 }
 
 .postedinfo button {
@@ -244,9 +306,10 @@ body.dark-mode .navbar .dark-mode-button {
 
 .profile-image-signout-margin {
     display: inline-flex;
-    flex-direction: column;
-    width: inherit;
+    flex-direction: row;
+    float: left;
     align-items: center;
+    text-align: center;
 }
 
 .profile-image-signout-margin img {
@@ -266,38 +329,21 @@ body.dark-mode .navbar .dark-mode-button {
 
 .personal-details-margin {
     display: inline-flex;
-    align-items: left;
-    justify-content: space-between;
-    flex-direction: column;
-    width: inherit;
-    text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.personal-details-input h2 {
+    flex-direction: row;
+    padding-left: auto;
+    align-items: center;
     text-align: center;
 }
 
 .personal-details-input {
     display: flex;
-    align-items: center;
-    padding-bottom: 2%;
-}
-
-.personal-details-input label {
-    margin-right: 10px; /* Add some spacing between label and textarea */
-}
-
-.personal-details-input textarea {
-    flex: 1; /* Allow textarea to expand and fill available space */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding-bottom: 5%;
 }
 
 .groups-margin {
     display: inline-flex;
-    flex-direction: column;
-    align-items: right;
+    flex-direction: row;
+    float: right;
     text-align: center;
 }
 
@@ -308,8 +354,20 @@ body.dark-mode .navbar .dark-mode-button {
     grid-gap: 5%; /* Adjust the spacing between grid items */
 }
 
+.register-container,
+.login-container,
+.profile-background,
+.personal-details-background,
+.groups-background {
+    padding: 5%;
+    box-shadow: 10px 10px 10px #666666;
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    background-color: white;
+    margin-bottom: 2%;
+}
+
 .groups-container {
-    width: 100%;
     box-shadow: 10px 10px 10px #666666;
     border: 2px solid #3F52FF;
     border-radius: 25px;
@@ -318,8 +376,7 @@ body.dark-mode .navbar .dark-mode-button {
 }
 
 .download-delete-buttons {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5%;
 }

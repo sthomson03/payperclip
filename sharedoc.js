@@ -19,11 +19,9 @@ function toggleExpand(event) {
 document.addEventListener("DOMContentLoaded", function() {
     	var darkModeButton = document.querySelector(".dark-mode-button");
     	darkModeButton.addEventListener("click", toggleDarkMode);
-    	darkModeButton.addEventListener("touchstart", toggleDarkMode);
 
         var expandButtons = document.querySelectorAll(".expand-button");
         expandButtons.forEach(function(expandButton) {
             expandButton.addEventListener("click", toggleExpand);
-            expandButton.addEventListener("touchstart", toggleExpand);
         });
 });
