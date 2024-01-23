@@ -278,7 +278,9 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .register-input button,
 .personal-details-input button,
 .register-container button,
-.register-login-buttons button {
+.register-login-buttons button,
+.download-delete-buttons button,
+.login-container button {
     display: inline-flex;
     text-align: center;
     background-color: #C7CCF1;
@@ -311,17 +313,24 @@ body.dark-mode .navbar .dark-mode-button:hover {
                         Account Page Styling
 */
 
+.account-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create three equal-width columns */
+    grid-gap: 5%; /* Adjust the spacing between grid items */
+    height: 95%;
+}
+
 .profile-image-signout-margin {
-    display: inline-flex;
-    flex-direction: row;
-    float: left;
     align-items: center;
     text-align: center;
+    height: inherit;
 }
 
 .profile-image-signout-margin img {
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     padding-bottom: 5%;
+    transform: translate(50%, 0%); /* Center the image using transform */
 }
 
 .center-buttons {
@@ -335,23 +344,20 @@ body.dark-mode .navbar .dark-mode-button:hover {
 }
 
 .personal-details-margin {
-    display: inline-flex;
-    flex-direction: row;
-    padding-left: auto;
     align-items: center;
     text-align: center;
+    height: inherit;
 }
 
 .personal-details-input {
-    display: flex;
     padding-bottom: 5%;
+    align-items: center;
 }
 
 .groups-margin {
-    display: inline-flex;
-    flex-direction: row;
     float: right;
     text-align: center;
+    height: inherit;
 }
 
 .current-groups,
@@ -372,6 +378,11 @@ body.dark-mode .navbar .dark-mode-button:hover {
     border-radius: 25px;
     background-color: white;
     margin-bottom: 2%;
+    height: inherit;
+}
+
+.login-container {
+    margin-top: 5%;
 }
 
 .groups-container {
@@ -380,10 +391,9 @@ body.dark-mode .navbar .dark-mode-button:hover {
     border-radius: 25px;
     background-color: white;
     margin-bottom: 2%;
+    margin-bottom: 15%;
 }
 
-.download-delete-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5%;
+.personal-details-input button {
+    margin-top: 5%;
 }
