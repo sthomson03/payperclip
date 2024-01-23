@@ -435,3 +435,8 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .personal-details-input button {
     margin-top: 5%;
 }
+
+.download-delete-buttons button {
+    padding: 2%;
+    margin: 2%;
+}
