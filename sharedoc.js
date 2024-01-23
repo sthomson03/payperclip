@@ -20,6 +20,10 @@ function toggleDarkMode(event) {
 
     var darkModeButton = document.querySelector(".dark-mode-button");
     darkModeButton.classList.toggle("active");
+
+    // Store dark mode preference in localStorage
+    var isDarkModeEnabled = element.classList.contains("dark-mode");
+    localStorage.setItem("darkModeEnabled", isDarkModeEnabled);
 }
 
 function toggleExpand(event) {
@@ -34,6 +38,14 @@ function toggleExpand(event) {
 document.addEventListener("DOMContentLoaded", function() {
     	var darkModeButton = document.querySelector(".dark-mode-button");
     	darkModeButton.addEventListener("click", toggleDarkMode);
+
+        // Retrieve dark mode preference from localStorage
+        var isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+        
+        if (isDarkModeEnabled === "true") {
+            document.body.classList.add("dark-mode");
+            darkModeButton.classList.add("active");
+        }
 
         var expandButtons = document.querySelectorAll(".expand-button");
         expandButtons.forEach(function(expandButton) {

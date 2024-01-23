@@ -113,6 +113,7 @@ footer {
 
 .dark-mode {
     background-color: #333333;
+    box-shadow: none;
 }
 
 .dark-mode h1,
@@ -131,15 +132,42 @@ footer {
 .dark-mode .announcements button,
 .dark-mode .postedinfo button,
 .dark-mode .announcements-title button,
-.dark-mode .postedinfo-title button {
+.dark-mode .profile-image-signout-margin button,
+.dark-mode .groups-margin button,
+.dark-mode .register-input button,
+.dark-mode .register-login-input button,
+.dark-mode .personal-details-input button,
+.dark-mode .register-container button,
+.dark-mode .register-login-buttons button,
+.dark-mode .download-delete-buttons button,
+.dark-mode .login-container button
+.dark-mode input,
+.dark-mode .personal-details-input input,
+.dark-mode .groups-container {
+    background-color: #333333;
+    color: #C7CCF1;
+    border: 1px solid #C7CCF1;
+}
+
+.dark-mode .personal-details-input label {
     color: #C7CCF1;
 }
 
+.dark-mode .register-container,
+.dark-mode .login-container,
 .dark-mode .announcements-container,
 .dark-mode .postedinfo-container,
-.dark-mode .navbar {
+.dark-mode .navbar,
+.dark-mode .profile-background,
+.dark-mode .personal-details-background,
+.dark-mode .groups-background {
     background-color: #666666;
     border: 2px solid #C7CCF1;
+}
+
+.dark-mode .register-login-input a:visited {
+    text-decoration: none; /* no underline */
+    color: #C7CCF1;
 }
 
 /* Changes "Dark Mode" navbar text to red when disabled */
@@ -189,6 +217,8 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .register-login-input input,
 .register-login-input select,
 .register-login-input button {
+    align-items: center;
+    text-align: center;
     margin-bottom: 5%; /* Adjust the value based on your design preference */
 }
 
@@ -205,6 +235,12 @@ body.dark-mode .navbar .dark-mode-button:hover {
     grid-gap: 5%; /* Adjust the spacing between grid items */
     text-align: center;
     padding-bottom: 10%;
+}
+
+.register-login-input a,
+.register-login-input a:visited {
+    text-decoration: none; /* no underline */
+    color: #3F52FF;
 }
 
 /*  ------------------------------------------------------------
@@ -298,7 +334,9 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .register-input button:hover,
 .personal-details-input button:hover,
 .register-container button:hover,
-.register-login-buttons button:hover {
+.register-login-buttons button:hover,
+.register-login-input button:hover,
+.register-login-input a:hover {
     color: white;
 }
 
@@ -372,7 +410,7 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .profile-background,
 .personal-details-background,
 .groups-background {
-    padding: 5%;
+    padding: 3%;
     box-shadow: 10px 10px 10px #666666;
     border: 2px solid #3F52FF;
     border-radius: 25px;
