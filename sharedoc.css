@@ -140,7 +140,9 @@ footer {
 .dark-mode .register-container button,
 .dark-mode .register-login-buttons button,
 .dark-mode .download-delete-buttons button,
-.dark-mode .login-container button
+.dark-mode .login-container button,
+.dark-mode .post-button button,
+.dark-mode .members-button button,
 .dark-mode input,
 .dark-mode .personal-details-input input,
 .dark-mode .groups-container {
@@ -149,7 +151,8 @@ footer {
     border: 1px solid #C7CCF1;
 }
 
-.dark-mode .personal-details-input label {
+.dark-mode .personal-details-input label,
+.dark-mode .reactions-checkbox label {
     color: #C7CCF1;
 }
 
@@ -160,7 +163,9 @@ footer {
 .dark-mode .navbar,
 .dark-mode .profile-background,
 .dark-mode .personal-details-background,
-.dark-mode .groups-background {
+.dark-mode .groups-background,
+.dark-mode .announcement-text-container textarea,
+.dark-mode .manage-group textarea {
     background-color: #666666;
     border: 2px solid #C7CCF1;
 }
@@ -222,17 +227,7 @@ body.dark-mode .navbar .dark-mode-button:hover {
     margin-bottom: 5%; /* Adjust the value based on your design preference */
 }
 
-.g-signin2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 10%;
-}
-
-.register-login-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
-    grid-gap: 5%; /* Adjust the spacing between grid items */
+.register-login-buttons button {
     text-align: center;
     padding-bottom: 10%;
 }
@@ -287,7 +282,8 @@ body.dark-mode .navbar .dark-mode-button:hover {
 
 .announcements-container.expand {
     width: 90vh;
-    height: inherit;
+    height: auto;
+    
 }
 
 .announcements-container {
@@ -296,9 +292,11 @@ body.dark-mode .navbar .dark-mode-button:hover {
     width: 90vh;
     position: relative;
     border-radius: 100px;
+    transition: width 0.75s ease, height 0.75s ease;
 }
 
-.postedinfo-container {
+.postedinfo-container,
+.create-announcement {
     height: 10vh;
     text-align: right;
     margin-left: auto;
@@ -316,7 +314,9 @@ body.dark-mode .navbar .dark-mode-button:hover {
 .register-container button,
 .register-login-buttons button,
 .download-delete-buttons button,
-.login-container button {
+.login-container button,
+.members-button button,
+.post-button button {
     display: inline-flex;
     text-align: center;
     background-color: #C7CCF1;
@@ -345,6 +345,51 @@ body.dark-mode .navbar .dark-mode-button:hover {
     position: absolute;
     right: 5%;
     top: 75%;
+}
+
+/*  ------------------------------------------------------------
+                        Announcements Staff Page Styling
+*/
+
+.announcement-text-container textarea,
+.manage-group textarea {
+    width: 80%;
+    height: 100px;
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    overflow: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+.reactions-checkbox {
+    align-items: right;
+}
+
+.reactions-checkbox label,
+.reactions-checkbox input {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.reactions-checkbox label {
+    display: inline-flex;
+    flex-direction: row;
+    float: right;
+}
+
+.reactions-checkbox input {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: right;
+}
+
+.post-button button,
+.members-button button {
+    margin-top: 2%;
+    padding: 2%;
 }
 
 /*  ------------------------------------------------------------

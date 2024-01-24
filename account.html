@@ -21,11 +21,11 @@
             </div>
 
             <div class="navbar">
-                <h3><a href="/payperclip/index.html">Announcements</a></h3>
-                <h3><a href="/payperclip/submissions.html">Submissions</a></h3>
-                <h3><a href="/payperclip/postedinfo.html">Posted Information</a></h3>
-                <h3><a href="/payperclip/feedback.html">Feedback</a></h3>
-		        <h3><a href="/payperclip/account.html">Account</a></h3>
+                <h3><a href="/index.html">Announcements</a></h3>
+                <h3><a href="/submissions.html">Submissions</a></h3>
+                <h3><a href="/postedinfo.html">Posted Information</a></h3>
+                <h3><a href="/feedback.html">Feedback</a></h3>
+		        <h3><a href="/account.html">Account</a></h3>
                 <h3><a href="#" class="dark-mode-button">Dark Mode</a></h3>
             </div>
         </div>
@@ -43,8 +43,7 @@
 
                     <div class="center-buttons">
                         <button type="button">Change Profile Picture</button>
-                        <button type="button">Sign Out</button>
-                        <a href="#" onclick="signOut();">Sign out</a>
+                        <button id="signout-button" type="submit">Sign Out</button>
                     </div>
                 </div>
             </div>
@@ -136,5 +135,25 @@
             </div>
         </footer>
     </body>
+
+    <script>
+        let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
+        let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+        let SignoutButton = document.getElementById("signout-button");
+
+        let Signout = () => {
+            sessionStorage.removeItem("user-creds");
+            sessionStorage.removeItem("user-info");
+            window.location.href = "index.html"
+        }
+
+        let CheckCred = () => {
+            if (!sessionStorage.getItem("user-creds"))
+                window.location.href = "index.html"
+        }
+
+        window.addEventListener("load", CheckCred);
+        SignoutButton.addEventListener("click", Signout);
+    </script>
 </html>
-	
