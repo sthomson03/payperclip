@@ -5,11 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="sharedoc.css">
-        <script src="sharedoc.js"></script>
-
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id" content="601978347749-vn3t25hvk1aihjsg1qjkpda8tdce6l5v.apps.googleusercontent.com">
+        <link rel="stylesheet" href="/css/sharedoc.css">
+        <script src="/js/sharedoc.js"></script>
         
         <title>Payperclip Sharedoc</title>
     </head>
@@ -17,16 +14,10 @@
     <body>
         <div class="header-container">
             <div class="logo">
-                <img src="Company Logo.png" alt="Payperclip Sharedoc" width="50%" height="50%">
+                <img src="/images/Company Logo.png" alt="Payperclip Sharedoc" width="50%" height="50%">
             </div>
 
             <div class="navbar">
-                <h3><a href="/index.html">Announcements</a></h3>
-                <h3><a href="/submissions.html">Submissions</a></h3>
-                <h3><a href="/postedinfo.html">Posted Information</a></h3>
-                <h3><a href="/feedback.html">Feedback</a></h3>
-		        <h3><a href="/account.html">Account</a></h3>
-                <h3><a href="#" class="dark-mode-button">Dark Mode</a></h3>
             </div>
         </div>
 
@@ -39,10 +30,12 @@
                 <div class="profile-background">
                     <h2>Profile</h2>
                     
-                    <img src="profilepic.png" alt="Profile Picture" width="50%" height="50%">
+                    <img src="/images/profilepic.png" alt="Profile Picture" width="50%" height="50%" id="profile-pic">
 
                     <div class="center-buttons">
-                        <button type="button">Change Profile Picture</button>
+                        <button id="updatepic-button" type="button">Change Profile Picture
+                            <input style="display: none" type="file" accept="image/jpeg, image/png, image/jpg" id="input-profilepic">
+                        </button>
                         <button id="signout-button" type="submit">Sign Out</button>
                     </div>
                 </div>
@@ -50,40 +43,43 @@
 
             <div class="personal-details-margin">
                 <div class="personal-details-background">    
-                    <h2>Personal Details</h2>
+                    <h2>Update Personal Details</h2>
                     
-                    <div class="personal-details-input">
-                        <input type="text" name="username" placeholder="Username">
-                    </div>
+                    <form id="detailsForm">
+                        <div class="personal-details-input">
+                            <input type="text" id="updated-username" placeholder="Username">
+                        </div>
 
-                    <div class="personal-details-input">
-                        <input type="password" name="password" placeholder="Password">
-                    </div>
+                        <div class="personal-details-input">
+                            <input type="email" id="updated-email" name="email" placeholder="Email">
+                        </div>
 
-                    <div class="personal-details-input">
-                        <input type="text" name="fullname" placeholder="Full Name">
-                    </div>
+                        <div class="personal-details-input">
+                            <input type="password" id="updated-password" name="password" placeholder="Password">
+                        </div>
 
-                    <div class="personal-details-input">
-                        <input type="email" name="email" placeholder="E-Mail Address">
-                    </div>
+                        <div class="personal-details-input">
+                            <input type="text" id="updated-fullname" placeholder="Full Name">
+                        </div>
 
-                    <div class="personal-details-input">
-                        <input type="tel" name="telno" placeholder="Tel. No">
-                    </div>
+                        <div class="personal-details-input">
+                            <input type="tel" id="updated-telno" placeholder="Tel. No">
+                        </div>
 
-                    <div class="personal-details-input">
-                        <input type="text" name="pronouns" placeholder="Pronouns">
-                    </div> 
-                    
-                    <div class="personal-details-input">
-                        <label>Email Notifications?:</label>
-                        <input type="checkbox" name="receive-emails" value="Emails">
-                    </div>
+                        <div class="personal-details-input">
+                            <input type="text" id="updated-pronouns" placeholder="Pronouns">
+                        </div> 
+                        
+                        <div class="personal-details-input">
+                            <label>Email Notifications?:
+                                <input type="checkbox" id="updated-notifications">
+                            </label>
+                        </div>
 
-                    <div class="personal-details-input">
-                        <button type="button">Submit</button>
-                    </div> 
+                        <div class="personal-details-input">
+                            <button id="updateinfo-button" type="submit">Update</button>
+                        </div>
+                    </form> 
                 </div>
             </div>
 
@@ -115,8 +111,8 @@
 
                     <h2>Account Information</h2>
                     <div class="download-delete-buttons">
-                        <button type="button">Download Data</button>
-                        <button type="button">Delete Account</button>
+                        <button id="download-button" type="button">Download Data</button>
+                        <button id="delete-button" type="button">Delete Account</button>
                     </div>
                 </div>
             </div>
@@ -124,36 +120,13 @@
 
         <footer>
             <div class="footer-text">
-                <h3>Footer placeholder text</h3>
-            </div>
-            
-            <div class="links">
-                <a href="www.google.com" target="_blank">Placeholder link 1</a>
-                <a href="www.google.com" target="_blank">Placeholder link 2</a>
-                <a href="www.google.com" target="_blank">Placeholder link 3</a>
-                <a href="www.google.com" target="_blank">Placeholder link 4</a>
+                <a href="advert.html">
+                    <h3>Click to find out more!</h3>
+                </a>
             </div>
         </footer>
     </body>
 
-    <script>
-        let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-        let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
-
-        let SignoutButton = document.getElementById("signout-button");
-
-        let Signout = () => {
-            sessionStorage.removeItem("user-creds");
-            sessionStorage.removeItem("user-info");
-            window.location.href = "index.html"
-        }
-
-        let CheckCred = () => {
-            if (!sessionStorage.getItem("user-creds"))
-                window.location.href = "index.html"
-        }
-
-        window.addEventListener("load", CheckCred);
-        SignoutButton.addEventListener("click", Signout);
-    </script>
+    <script src="/js/account.js" type="module"></script>
+    <script src="/js/navbar.js" type="module"></script>
 </html>

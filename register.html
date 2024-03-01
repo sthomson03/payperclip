@@ -5,16 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="sharedoc.css">
-        <script src="index.js"></script>
-        <script src="sharedoc.js"></script>
+        <link rel="stylesheet" href="/css/sharedoc.css">
+        <script src="/js/sharedoc.js"></script>
 
         <title>Payperclip Sharedoc</title>
     </head>
 
     <body>
         <div class="register-login-container">
-            <img src="Company Logo.png" alt="Payperclip Sharedoc" width="25%" height="25%">
+            <img src="/images/Company Logo.png" alt="Payperclip Sharedoc" width="25%" height="25%">
 
             <div class="register-container">
                 <form id="signup-form">
@@ -22,7 +21,7 @@
                         <h1>Register</h1>
 
                             <input type="text" id="signup-fullname" placeholder="Full Name" required>
-                                
+                            
                             <input type="email" id="signup-email" placeholder="E-Mail Address" required>
                                 
                             <input type="text" id="signup-username" placeholder="Username" required>
@@ -31,19 +30,26 @@
                                 
                             <input type="password" id="signup-second-password" placeholder="Re-enter Password" required>
                                 
-                            <select id="signup-organisation" placeholder="Organisation" class="group-dropdown" required>
+                            <select id="signup-organisation" class="group-dropdown" required>
+                                <option value="" disabled selected>Select Organisation</option>
                                 <option value="group1">Org 1</option>
                                 <option value="group2">Org 2</option>
                             </select>
 
-                            <select id="signup-usertype" placeholder="User Type" class="group-dropdown" required>
+                            <select id="signup-usertype" class="group-dropdown" required>
+                                <option value="" disabled selected>Select User Type</option>
                                 <option value="student-user">Student</option>
                                 <option value="staff-user">Staff</option>
                             </select>
 
-                            <button id="registerButton" type="submit">Register</button>
+                            <div class="register-login-buttons">
+                                <button id="registerButton" type="submit">Register</button>
+                                <a href="/index.html">
+                                    <button id="login-button" type="button">Login</button>
+                                </a>
+                            </div>
 
-                        <button><a href="#" class="dark-mode-button">Dark Mode</a></button>
+                        <button type="button"><a href="#" class="dark-mode-button">Dark Mode</a></button>
                     </div>
                 </form>
             </div>
@@ -51,63 +57,13 @@
 
         <footer>
             <div class="footer-text">
-                <h3>Footer placeholder text</h3>
-            </div>
-            
-            <div class="links">
-                <a href="www.google.com" target="_blank">Placeholder link 1</a>
-                <a href="www.google.com" target="_blank">Placeholder link 2</a>
-                <a href="www.google.com" target="_blank">Placeholder link 3</a>
-                <a href="www.google.com" target="_blank">Placeholder link 4</a>
+                <a href="advert.html">
+                    <h3>Click to find out more!</h3>
+                </a>
             </div>
         </footer>
     </body>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-      
-        const firebaseConfig = {
-          apiKey: "AIzaSyAZo8CAqAyo2T-lijmHCQdq-_9W_-0rkGA",
-          authDomain: "payperclip-d7e18.firebaseapp.com",
-          databaseURL: "https://payperclip-d7e18-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "payperclip-d7e18",
-          storageBucket: "payperclip-d7e18.appspot.com",
-          messagingSenderId: "896354782092",
-          appId: "1:896354782092:web:5edcc35ed31cc5c70264a9",
-        };
-      
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase();
-        const auth = getAuth(app);
-
-        let fullnameInput = document.getElementById("signup-fullname");
-        let emailInput = document.getElementById("signup-email");
-        let usernameInput = document.getElementById("signup-username");
-        let passwordOriginalInput = document.getElementById("signup-original-password");
-        let passwordSecondInput = document.getElementById("signup-second-password");
-        let registerForm = document.getElementById("signup-form");
-
-        let RegisterUser = evt => {
-            evt.preventDefault();
-
-            createUserWithEmailAndPassword(auth, emailInput.value, passwordOriginalInput.value)
-            .then((credentials) => {
-                set(ref(db, "UsersAuthList/ " + credentials.user.uid), {
-                    fullname: fullnameInput.value,
-                    username: usernameInput.value
-                })
-            })
-            .catch((error) => {
-                alert(error.message);
-                console.log(error.code);
-                console.log(error.message);
-            })
-        }
-
-        registerForm.addEventListener("submit", RegisterUser);
-    </script>
+    <script src="/js/register.js" type="module"></script>
 </html>
 	
