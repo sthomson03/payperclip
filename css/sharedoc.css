@@ -1,0 +1,854 @@
+/*  ------------------------------------------------------------
+                        Default Page Styling
+*/
+
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #D9D9D9;
+    transition: background-color 0.75s ease;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+h1,
+h2,
+p,
+label,
+.navbar a,
+.about-navbar a {
+    color: #3F52FF;
+}
+
+input {
+    color: #3F52FF;
+    border: 1px solid #3F52FF;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1%;
+    justify-content: space-between;
+}
+
+.logo {
+    padding: 1% 1%;
+    display: inline-flex;
+}
+
+/* add style to navbar */
+.navbar {
+    width: 100%;
+    background-color: #C7CCF1;
+    display: inline-flex;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 25px;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #3F52FF;
+    transition: background-color 0.75s ease;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-flex;
+}
+
+.navbar a:hover,
+button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-container {
+    display: flex;
+}
+
+.announcements,
+.postedinfo {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    position: fixed;
+}
+
+.footer-text {
+    text-align: center;
+}
+
+.footer-text a {
+    color: #3F52FF;
+    text-decoration: none;
+}
+
+/*  ------------------------------------------------------------
+                        Dark Mode Styling
+*/
+
+.dark-mode {
+    background-color: #333333;
+    box-shadow: none;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode p,
+.dark-mode .navbar a,
+.dark-mode .about-navbar a,
+.dark-mode .footer-text,
+.dark-mode select {
+    color: #C7CCF1;
+}
+
+.dark-mode .navbar a:hover,
+.dark-mode .about-navbar a:hover {
+    color: #333333;
+}
+
+.dark-mode .announcements button,
+.dark-mode .postedinfo button,
+.dark-mode .announcements-title button,
+.dark-mode .profile-image-signout-margin button,
+.dark-mode .groups-margin button,
+.dark-mode .register-input button,
+.dark-mode .register-login-input button,
+.dark-mode .personal-details-input button,
+.dark-mode .register-container button,
+.dark-mode .register-login-buttons button,
+.dark-mode .download-delete-buttons button,
+.dark-mode .login-container button,
+.dark-mode .post-button button,
+.dark-mode .members-button button,
+.dark-mode input,
+.dark-mode .personal-details-input input,
+.dark-mode .groups-container,
+.dark-mode .task-container,
+.dark-mode .ourvision-container,
+.dark-mode .photo-buttons button,
+.dark-mode .message-input button,
+.dark-mode .contacts-container button,
+.dark-mode .uploadsubmission-container button {
+    background-color: #333333;
+    color: #C7CCF1;
+    border: 1px solid #C7CCF1;
+}
+
+.dark-mode .dark-mode-button {
+    color: #C7CCF1;
+}
+
+.dark-mode .personal-details-input label,
+.dark-mode .reactions-checkbox label,
+.dark-mode .forgotten-link a,
+.dark-mode .footer-text h3 {
+    color: #C7CCF1;
+}
+
+.dark-mode .forgotten-link a:hover,
+.dark-mode .footer-text h3:hover {
+    color: white;
+}
+
+.dark-mode .register-container,
+.dark-mode .login-container,
+.dark-mode .announcements-container,
+.dark-mode .uploadsubmission-container,
+.dark-mode .postedinfo-container,
+.dark-mode .navbar,
+.dark-mode .about-navbar,
+.dark-mode .profile-background,
+.dark-mode .personal-details-background,
+.dark-mode .groups-background,
+.dark-mode .announcement-text-container textarea,
+.dark-mode .manage-group textarea,
+.dark-mode .announcement-text-container input,
+.dark-mode .photo-container,
+.dark-mode .messages-container,
+.dark-mode .contacts-container,
+.dark-mode .prevsubmission-container {
+    background-color: #666666;
+    border: 2px solid #C7CCF1;
+}
+
+.dark-mode .upload-container {
+    border: 2px #C7CCF1 dashed;
+    background: #666666;
+}
+
+.dark-mode .upload-container img {
+    filter: invert(94%) sepia(50%) saturate(5086%) hue-rotate(178deg) brightness(100%) contrast(88%);
+}
+
+.dark-mode .register-login-input a {
+    text-decoration: none; /* no underline */
+    color: #C7CCF1;
+}
+
+/* Changes "Dark Mode" navbar text to red when disabled */
+body:not(.dark-mode) .navbar .dark-mode-button,
+body:not(.dark-mode) .about-navbar .dark-mode-button {
+    color: #ff6961;
+}
+
+body:not(.dark-mode) .navbar .dark-mode-button:hover,
+body:not(.dark-mode) .about-navbar .dark-mode-button:hover {
+    color: white;
+}
+
+/* Changes "Dark Mode" navbar text to green when enabled */
+body.dark-mode .navbar .dark-mode-button,
+body.dark-mode .about-navbar .dark-mode-button {
+    color: #77DD77;
+}
+
+body.dark-mode .navbar .dark-mode-button:hover,
+body.dark-mode .about-navbar .dark-mode-button:hover {
+    color: white;
+}
+
+/* Inverts logo colour when dark mode toggled */
+.dark-mode .logo,
+.dark-mode .register-login-container img {
+    filter: invert(100%);
+}
+
+/*  ------------------------------------------------------------
+            Register, Login, Forgotten Password Page Styling
+*/
+
+.register-login-container {
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.register-login-container img {
+    margin-top: 5%;
+    padding-bottom: 2%;
+}
+
+.register-login-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-login-input label {
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.register-login-input input,
+.register-login-input select,
+.register-login-input button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 5%; /* Adjust the value based on your design preference */
+    width: auto;
+}
+
+.register-login-buttons button,
+#registerButton {
+    text-align: center;
+    width: 100%;
+}
+
+.login-button,
+.register-login-input a {
+    width: 100%;
+}
+
+.register-login-input a,
+.register-login-input a:visited {
+    text-decoration: none; /* no underline */
+    color: #3F52FF;
+}
+
+/*  ------------------------------------------------------------
+                        About Page Styling
+*/
+
+/* add style to navbar */
+.about-navbar {
+    width: inherit;
+    background-color: #C7CCF1;
+    display: inline-flex;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 25px;
+    align-items: center;
+    border: 2px solid #3F52FF;
+    transition: background-color 0.75s ease;
+}
+
+.about-navbar a {
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-flex;
+}
+
+.about-navbar h3 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.about-navbar a:hover,
+button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.task-container,
+.ourvision-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #3F52FF;
+    padding: 1rem 3rem;
+    background-color: white;
+    overflow-y: hidden;
+    margin-bottom: 2%;
+    height: 70vh;
+    border-radius: 100px;
+}
+
+.task-container {
+    text-align: left;
+    margin-right: 5%;
+    width: 80vh;
+}
+
+.ourvision-container {
+    text-align: right;
+    margin-left: 5%;
+}
+
+/*  ------------------------------------------------------------
+                        Photo Gallery Page Styling
+*/
+
+.photo-container {
+    width: 100%;
+    height: 70vh;
+    border: 2px solid #3F52FF;
+    padding: 1rem 3rem;
+    background-color: white;
+    border-radius: 100px;
+    justify-content: center;
+}
+
+.photo h1 {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo {
+    display: none;
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center items horizontally */
+}
+
+.photo img {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.photo.active {
+    display: block;
+}
+
+.photo-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.photo-buttons button {
+    margin: 0 10px;
+}
+
+/*  ------------------------------------------------------------
+                        Announcements Page Styling
+*/
+
+.announcements-title,
+.messages-title,
+.uploadsubmission-title {
+    text-align: left;
+    display: inline-flex;
+}
+
+.postedinfo-title,
+.contacts-title,
+.recentsubmission-title {
+    text-align: right;
+    display: inline-flex;
+}
+
+.group-dropdown {
+    position: relative;
+    display: inline-flex;
+    border: none;
+    background-color: transparent;
+    color: #3F52FF;
+}
+
+.announcements-container,
+.messages-container,
+.contacts-container,
+.postedinfo-container,
+.uploadsubmission-container,
+.prevsubmission-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #3F52FF;
+    padding: 1rem 3rem;
+    background-color: white;
+    overflow-y: hidden;
+    margin-bottom: 2%;
+}
+
+.announcements-container p {
+    display: none;
+}
+
+.announcements-container.expand p {
+    display: block;
+}
+
+.announcements-container.expand {
+    width: 90vh;
+    height: auto;
+}
+
+.announcements-container,
+.messages-container,
+.uploadsubmission-container {
+    height: inherit;
+    text-align: left;
+    width: 90vh;
+    position: relative;
+    border-radius: 100px;
+    transition: width 0.75s ease, height 0.75s ease;
+}
+
+.postedinfo-container,
+.contacts-container,
+.create-announcement,
+.prevsubmission-container {
+    height: 10vh;
+    text-align: right;
+    margin-left: auto;
+    width: 40%;
+    border-radius: 25px;
+}
+
+.thumbs-up-count {
+    color: #3F52FF;
+}
+
+.manage-group {
+    display: inline-flex;
+}
+
+.announcements button,
+.message-input button,
+.postedinfo button,
+.contacts button,
+.announcements-title button,
+.profile-image-signout-margin button,
+.groups-margin button,
+.register-input button,
+.personal-details-input button,
+.register-container button,
+.register-login-buttons button,
+.download-delete-buttons button,
+.login-container button,
+.post-button button,
+.photo-buttons button,
+.uploadsubmission-container button {
+    display: inline-flex;
+    text-align: center;
+    background-color: #C7CCF1;
+    border: 1px solid #3F52FF;
+    border-radius: 5px;
+    font-size: 17px;
+    color: #3F52FF;
+}
+
+.announcements button:hover,
+.postedinfo button:hover,
+.announcements-title button:hover,
+.profile-image-signout-margin button:hover,
+.groups-margin button:hover,
+.register-input button:hover,
+.personal-details-input button:hover,
+.register-container button:hover,
+.register-login-buttons button:hover,
+.register-login-input button:hover,
+.register-login-input a:hover,
+.post-button button:hover,
+.photo-buttons button:hover,
+.uploadsubmission-container button:hover {
+    color: white;
+}
+
+.edit-modal input {
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+#edit-announcement-message {
+    height: 100px;
+}
+
+.edit-modal button {
+    margin-bottom: 2%;
+}
+
+.forgotten-link a:hover,
+.footer-text h3:hover {
+    color: #666666;
+}
+
+.postedinfo button {
+    display: inline-flex;
+    position: absolute;
+    right: 5%;
+    top: 75%;
+}
+
+/*  ------------------------------------------------------------
+                        Announcements Staff Page Styling
+*/
+
+.announcement-text-container textarea,
+.manage-group textarea {
+    text-align: center;
+    margin-bottom: 2%;
+    width: 80%;
+    height: 100px;
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    overflow: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+.announcement-text-container input {
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    margin-bottom: 2%;
+    width: 80%;
+    text-align: center;
+}
+
+#announcement-message-input {
+    height: 55vh;
+}
+
+.reactions-checkbox {
+    display: inline-flex;
+    align-items: right;
+}
+
+.post-button button {
+    margin-top: 2%;
+    padding: 2%;
+}
+
+/*  ------------------------------------------------------------
+                        Submissions Page Styling
+*/
+
+.submissions {
+    height: auto;
+    width: 100%;
+}
+
+.prevsubmissions {
+    height: auto;
+    width: 100%;
+    align-items: right;
+}
+
+.uploadsubmission-container {
+    height: auto;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5%;
+}
+
+.submission-title {
+    width: 100%;
+    text-align: center;
+}
+
+.submission-title input {
+    height: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.submission-upload {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px #3F52FF dashed;
+    background: #F0F8FF;
+    border-radius: 10px;
+    padding: 3%;
+    height: auto;
+}
+
+.upload-container img {
+    filter: invert(47%) sepia(98%) saturate(5448%) hue-rotate(228deg) brightness(96%) contrast(111%);
+    width: 25%;
+    height: auto;
+}
+
+.prevsubmission-container {
+    justify-content: center;
+    text-align: center;
+}
+
+/*  ------------------------------------------------------------
+                        Messages Page Styling
+*/
+
+.messages {
+    width: 60%;
+}
+
+.messages-container {
+    height: 400px;
+    overflow-y: auto;
+    padding-bottom: 3%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    text-align: center;
+}
+
+.messages-container h1 {
+    justify-content: center;
+}
+
+.message-timestamp {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.messages-container::-webkit-scrollbar {
+    display: none;
+}
+
+.message-partner {
+    text-align: left;
+    margin-right: auto;
+}
+
+.message-user {
+    text-align: right;
+    margin-left: auto;
+}
+
+.message-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.message-input button {
+    margin-left: 5%;
+}
+
+.message-contact {
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.contacts {
+    margin-left: auto;
+    width: 30%;
+    align-items: right;
+}
+
+.contact-search {
+    padding-bottom: 5%;
+}
+
+.contacts-container {
+    width: auto;
+    height: auto;
+    padding-bottom: 0;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+#message-contact {
+    margin-bottom: 5%;
+    justify-content: center;
+}
+
+/*  ------------------------------------------------------------
+                        Whiteboard Page Styling
+*/
+
+.whiteboard {
+    width: 100%;
+}
+
+/*  ------------------------------------------------------------
+                        Account Page Styling
+*/
+
+.account-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create three equal-width columns */
+    grid-gap: 5%; /* Adjust the spacing between grid items */
+    height: 95%;
+}
+
+.profile-image-signout-margin {
+    align-items: center;
+    text-align: center;
+    height: inherit;
+}
+
+.profile-image-signout-margin img {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5%;
+    transform: translate(50%, 0%); /* Center the image using transform */
+}
+
+.center-buttons {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-buttons button {
+    margin-bottom: 5%;
+}
+
+.personal-details-margin {
+    align-items: center;
+    text-align: center;
+    height: inherit;
+}
+
+.personal-details-input {
+    padding-bottom: 5%;
+    align-items: center;
+    width: inherit;
+}
+
+.personal-details-input label {
+    display: inline-flex;
+    text-align: center;
+    white-space: nowrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.groups-margin {
+    float: right;
+    text-align: center;
+    height: inherit;
+}
+
+.current-groups,
+.previous-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+    grid-gap: 5%; /* Adjust the spacing between grid items */
+}
+
+.register-container,
+.login-container,
+.profile-background,
+.personal-details-background,
+.groups-background {
+    padding: 3%;
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    background-color: white;
+    margin-bottom: 2%;
+    height: inherit;
+}
+
+.login-container {
+    margin-top: 5%;
+}
+
+.groups-container {
+    border: 2px solid #3F52FF;
+    border-radius: 25px;
+    background-color: white;
+    margin-bottom: 2%;
+    margin-bottom: 15%;
+}
+
+.personal-details-input button {
+    margin-top: 5%;
+}
+
+.download-delete-buttons button {
+    padding: 2%;
+    margin: 2%;
+}
