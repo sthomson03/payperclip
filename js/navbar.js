@@ -29,10 +29,23 @@ function applyDarkModePreference() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    navbarToggle.addEventListener('click', function () {
+        // Toggle the display CSS property
+        if (navbar.style.display === "none" || navbar.style.display === "") {
+            navbar.style.display = "flex";
+        } else {
+            navbar.style.display = "none";
+        }
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     const userInfo = JSON.parse(sessionStorage.getItem("user-info"));
     const userType = userInfo.usertype;
-    console.log(userType);
 
     const navbar = document.querySelector('.navbar');
 

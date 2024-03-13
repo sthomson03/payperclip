@@ -19,7 +19,6 @@ const auth = getAuth(app);
 
 document.querySelector('.group-dropdown').addEventListener('change', function() {
   const selectedGroup = this.value;
-  console.log(selectedGroup);
   fetchAnnouncements(auth.currentUser.uid, selectedGroup);
 });
 
@@ -43,45 +42,40 @@ const fetchAnnouncements = (selectedGroup) => {
 
       displayAnnouncements(announcements);
     } else {
-      console.log("No announcements found for selected group");
       displayAnnouncements([]);
     }
-  }).catch((error) => {
-    console.error("Error fetching announcements: ", error);
-  });
+  })
 };
 
 function toggleExpand(event) {
   event.preventDefault();
   var container = event.target.closest('.announcements-container');
   var content = container.querySelector('p');
-  content.style.display = content.style.display === 'none' ? 'block' : 'none'; // Toggle visibility
+  content.style.display = content.style.display === 'none' ? 'block' : 'none';
 }
 
 function attachExpandListeners() {
   const expandButtons = document.querySelectorAll('.expand-button');
   expandButtons.forEach(button => {
-      // Remove existing event listeners to avoid duplicates
       button.removeEventListener('click', toggleExpand);
-      // Attach the event listener
       button.addEventListener('click', toggleExpand);
   });
 }
 
 const displayAnnouncements = (announcements) => {
   const announcementContainers = document.querySelectorAll('.announcements-container');
-  
+
   announcementContainers.forEach(container => {
-    container.querySelector('h2').innerText = '';
-    container.querySelector('p').innerText = '';
-    container.querySelector('.expand-button').style.display = 'none';
-    container.querySelector('.react-button').style.display = 'none';
-    container.querySelector('.thumbs-up-count').style.display = 'none';
+    container.style.display = 'none';
   });
 
-  announcements.forEach((announcement, i) => {
-    if (i < announcementContainers.length) {
-      const container = announcementContainers[i];
+  const validAnnouncements = announcements.filter(announcement => announcement.title && announcement.announcement);
+
+  validAnnouncements.forEach((announcement, index) => {
+    if (index < announcementContainers.length) {
+      const container = announcementContainers[index];
+      container.style.display = 'block';
+
       const titleElement = container.querySelector('h2');
       const messageElement = container.querySelector('p');
       const expandButton = container.querySelector('.expand-button');
@@ -98,18 +92,10 @@ const displayAnnouncements = (announcements) => {
       thumbsUpCountSpan.style.display = 'inline';
 
       attachExpandListeners();
-    
-      const thumbsUpRef = ref(db, `AnnouncementList/${announcement.id}/reactions/thumbsUp`);
-      get(thumbsUpRef).then((snapshot) => {
-        const thumbsUpCount = snapshot.exists() ? snapshot.val() : 0;
-        thumbsUpCountSpan.innerText = thumbsUpCount;
-        thumbsUpCountSpan.style.display = 'inline';
-      }).catch((error) => {
-        console.error('Error fetching thumbs up count: ', error);
-      });
     }
   });
 };
+
 
 document.querySelector('.group-dropdown').addEventListener('change', function() {
   const selectedGroup = this.value;
@@ -138,11 +124,9 @@ function addThumbsUp(announcementId, container) {
         const newCount = currentCount + 1;
 
         set(thumbsUpRef, newCount).then(() => {
-          console.log('Thumbs up count updated successfully.');
           const thumbsUpCountSpan = container.querySelector('.thumbs-up-count');
           thumbsUpCountSpan.innerText = newCount;
 
-          // Record that the user has reacted
           set(userReactionRef, true).catch((error) => {
             console.error('Error recording user reaction:', error);
           });
@@ -151,12 +135,47 @@ function addThumbsUp(announcementId, container) {
   })
 }
 
+const displaySubmissions = async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+  
+  const submissionsRef = ref(db, `SubmissionsList/${user.uid}`);
+  const snapshot = await get(submissionsRef);
+
+  if (snapshot.exists()) {
+      const submissionData = snapshot.val();
+      const submissionArray = Object.entries(submissionData)
+        .map(([key, value]) => ({ id: key, ...value }))
+        .sort((a, b) => b.timestamp - a.timestamp);
+      const submissionContainers = document.querySelectorAll('.prevsubmission-container');
+
+      submissionContainers.forEach((container, index) => {
+          const submission = submissionArray[index];
+          if (submission) {
+              const h2 = container.querySelector('h2');
+              const p = container.querySelector('p');
+              const subDate = new Date(submission.timestamp);
+              const grade = submission.grade || "Ungraded";
+
+              h2.textContent = submission.title;
+              p.textContent = `Submitted on: ${subDate.toLocaleDateString()} | Grade: ${grade}`;
+              container.style.display = 'block';
+          } else {
+              container.style.display = 'none';
+          }
+      });
+  } else {
+      document.querySelectorAll('.prevsubmission-container').forEach(container => {
+          container.style.display = 'none';
+      });
+  }
+};
+
 auth.onAuthStateChanged(user => {
   if (user) {
     fetchAnnouncements('group1');
-    console.log("fetch group1 ");
+    displaySubmissions();
   } else {
-    console.log("No user signed in.");
     window.location.href = "index.html";
   }
 });

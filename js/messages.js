@@ -43,9 +43,6 @@ const displayContacts = async (filteredContactsArray) => {
                 ...contact,
                 id: key
             }));
-        } else {
-            console.log("No contacts available.");
-            return;
         }
     }
 
@@ -96,12 +93,9 @@ const filterContacts = (searchText) => {
   
         displayContacts(filteredContacts);
       } else {
-        console.log("No contacts available.");
         displayContacts([]);
       }
-    }).catch((error) => {
-      console.error("Error fetching contacts: ", error);
-    });
+    })
 };
 
 const loadMessages = (currentUserUid, partnerUid) => {
@@ -118,11 +112,9 @@ const loadMessages = (currentUserUid, partnerUid) => {
             snapshot.forEach((childSnapshot) => {
                 const messageData = childSnapshot.val();
 
-                // Create a message element
-                const messageElement = document.createElement('div'); // Changed to div to contain both message and timestamp
+                const messageElement = document.createElement('div');
                 messageElement.classList.add('message');
 
-                // Create a paragraph for the text message
                 const messageText = document.createElement('p');
                 messageText.textContent = messageData.message;
                 if (messageData.senderUid === currentUserUid) {
@@ -131,24 +123,19 @@ const loadMessages = (currentUserUid, partnerUid) => {
                     messageText.classList.add('message-partner');
                 }
 
-                // Create a span for the timestamp
                 const timestampElement = document.createElement('span');
                 timestampElement.classList.add('message-timestamp');
-                // Convert the timestamp to a human-readable format
                 const date = new Date(messageData.timestamp);
                 timestampElement.textContent = date.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
 
-                // Append message text and timestamp to message element
                 messageElement.appendChild(timestampElement);
                 messageElement.appendChild(messageText);
 
-                // Append message element to the messages container
                 messagesContainer.appendChild(messageElement);
             });
         }
     })
 };
-
 
 const sendMessage = async () => {
     const messageInput = document.querySelector('.message-input input');
@@ -165,11 +152,8 @@ const sendMessage = async () => {
             timestamp: Date.now(),
             conversation: conversationId
         });
-        console.log('Message sent successfully.');
         loadMessages(auth.currentUser.uid, currentChatPartner);
         messageInput.value = '';
-    } else {
-        console.error("Message is empty or no chat partner selected.");
     }
 };
 

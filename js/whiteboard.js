@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getDatabase, set, ref, update, get, remove } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-import { getAuth, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZo8CAqAyo2T-lijmHCQdq-_9W_-0rkGA",
@@ -18,11 +17,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const auth = getAuth(app);
 
-// Check user is signed in
 let CheckCred = () => {
     if (!sessionStorage.getItem("user-creds"))
     window.location.href = "index.html"
-  }
+}
 
 const App = () => {
     return React.createElement(

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getDatabase, set, ref, update, get, remove } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { getDatabase, ref, update, get, remove } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 import { getAuth, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
 
@@ -32,16 +32,13 @@ let ChangeProfilePicButton = document.getElementById("updatepic-button");
 let UpdateButton = document.getElementById("updateinfo-button");
 let SignoutButton = document.getElementById("signout-button");
 
+let currentGroupContainer = document.getElementById("current-group");
+let prevGroupContainer = document.getElementById("prev-group");
+
 let DownloadButton = document.getElementById("download-button");
 let DeleteButton = document.getElementById("delete-button");
 
-const userInfo = JSON.parse(sessionStorage.getItem("user-info"));
 const userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-const userType = userInfo.usertype;
-
-let AnnouncementsLink = document.getElementById("announcements-link");
-let SubmissionsLink = document.getElementById("submissions-link");
-let FeedbackLink = document.getElementById("feedback-link");
 
 function fetchProfilePicture() {
   const userPicRef = ref(db, 'UsersAuthList/' + userCreds.uid + '/profilePicture');
@@ -49,12 +46,8 @@ function fetchProfilePicture() {
     if (snapshot.exists()) {
       const downloadURL = snapshot.val();
       ProfilePic.src = downloadURL;
-    } else {
-      console.log("No profile picture found.");
     }
-  }).catch((error) => {
-    console.error("Failed to fetch profile picture:", error);
-  });
+  })
 }
 
 let UpdateInformation = (event) => {
@@ -66,11 +59,9 @@ let UpdateInformation = (event) => {
   if (emailInput.value) {
     updateEmail(user, emailInput.value)
     .then(() => {
-      console.log("Email updated successfully!");
       alert("Email updated successfully!");
     })
     .catch((error) => {
-      console.log("Error updating email, please retry.");
       alert("Error updating email, please retry.");
     });
   }
@@ -78,11 +69,9 @@ let UpdateInformation = (event) => {
   if (passwordInput.value) {
     updatePassword(user, passwordInput.value)
     .then(() => {
-      console.log("Password updated successfully!");
       alert("Password updated successfully!");
     })
     .catch(() => {
-      console.log("Error updating password, please retry.");
       alert("Error updating password, please retry.");
     });
   }
@@ -106,13 +95,8 @@ let UpdateInformation = (event) => {
   if (Object.keys(updates).length > 0) {
     update(ref(db, "UsersAuthList/" + userCreds.uid), updates)
     .then(() => {
-      console.log("User information updated successfully!");
       alert("User information updated successfully!");
     })
-    .catch((error) => {
-      console.error("Error updating user information: ", error);
-      alert("Error updating user information, please retry.");
-    });
   }
 }
 
@@ -127,10 +111,7 @@ function ChangeProfilePic() {
 
   fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    if (!file) {
-      console.log("No file selected.");
-      return;
-    }
+
     const metadata = {
       contentType: file.type
     };
@@ -140,11 +121,7 @@ function ChangeProfilePic() {
 
     const uploadTask = uploadBytesResumable(fileRef, file, metadata);
 
-    uploadTask.on('state_changed',
-      (error) => {
-        console.error('Upload error:', error);
-      }, 
-      () => {
+    uploadTask.on('state_changed', () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           ProfilePic.src = downloadURL;
           updateProfilePictureURL(downloadURL);
@@ -152,6 +129,29 @@ function ChangeProfilePic() {
       }
     );
   });
+}
+
+function loadProfileGroups() {
+  const currentGroup = ref(db, "UsersAuthList/" + userCreds.uid + "/organisation");
+  const prevGroup = ref(db, "UsersAuthList/" + userCreds.uid + "/prevorganisation");
+
+  get(currentGroup).then((snapshot) => {
+    if (snapshot.exists()) {
+      const currentOrg = snapshot.val();
+      currentGroupContainer.querySelector("p").innerText = currentOrg;
+    } else {
+      currentGroupContainer.querySelector("p").innerText = "No current organisation";
+    }
+  })
+
+  get(prevGroup).then((snapshot) => {
+    if (snapshot.exists()) {
+      const prevOrg = snapshot.val();
+      prevGroupContainer.querySelector("p").innerText = prevOrg ? prevOrg : "No previous organisation";
+    } else {
+      prevGroupContainer.querySelector("p").innerText = "No Previous Organisation";
+    }
+  })
 }
 
 function updateProfilePictureURL(downloadURL) {
@@ -166,11 +166,6 @@ function updateProfilePictureURL(downloadURL) {
 }
 
 let DownloadDataClick = () => {
-  if (!auth.currentUser) {
-    console.log("No user signed in.");
-    return;
-  }
-
   const userRef = ref(db, 'UsersAuthList/' + auth.currentUser.uid);
 
   get(userRef).then((snapshot) => {
@@ -192,67 +187,23 @@ let DownloadDataClick = () => {
       setTimeout(() => {
         URL.revokeObjectURL(url);
       }, 100);
-    } else {
-      console.log("No user data found.");
     }
-  }).catch((error) => {
-    console.error("Failed to fetch user data:", error);
-  });
+  })
 };
 
 let DeleteAccountClick = () => {
-  if (!auth.currentUser) {
-    console.log("No user signed in.");
-    return;
-  }
-
   const userRef = ref(db, 'UsersAuthList/' + user.uid);
 
   remove(userRef).then(() => {
-    console.log("User's data deleted successfully from Realtime Database.");
-
     user.delete().then(() => {
-      console.log('User account deleted successfully.');
       window.location.href = "/register.html";
-    }).catch((error) => {
-      console.error('Error deleting user account:', error);
-    });
-  }).catch((error) => {
-    console.error("Error deleting user's data from Realtime Database:", error);
-  });
+    })
+  })
 };
 
 let CheckCred = () => {
   if (!sessionStorage.getItem("user-creds"))
   window.location.href = "index.html"
-}
-
-let HandleAnnouncementsClick = () => {
-    if (userType === "staff-user") {
-      window.location.href = "/announcements-staff.html";
-    } else if (userType === "student-user") {
-      window.location.href = "/announcements-student.html";
-    }
-}
-
-let HandleSubmissionsClick = () => {
-    window.location.href = "/submissions-student.html";
-}
-
-let HandlePostedinfoClick = () => {
-  if (userType === "staff-user") {
-    window.location.href = "/postedinfo-staff.html";
-  } else if (userType === "student-user") {
-    window.location.href = "/postedinfo-student.html";
-  }
-}
-
-let HandleFeedbackClick = () => {
-  if (userType === "staff-user") {
-    window.location.href = "/feedback-staff.html";
-  } else if (userType === "student-user") {
-    window.location.href = "/feedback-student.html";
-  }
 }
 
 let Signout = () => {
@@ -263,15 +214,11 @@ let Signout = () => {
 
 window.addEventListener("load", CheckCred);
 window.addEventListener("load", fetchProfilePicture);
+window.addEventListener("load", loadProfileGroups);
 ChangeProfilePicButton.addEventListener("click", ChangeProfilePic);
 
 SignoutButton.addEventListener("click", Signout);
 UpdateButton.addEventListener("click", UpdateInformation);
 
 DownloadButton.addEventListener("click", DownloadDataClick);
-DeleteButton.addEventListener("click", DeleteAccountClick)
-
-AnnouncementsLink.addEventListener("click", HandleAnnouncementsClick);
-SubmissionsLink.addEventListener("click", HandleSubmissionsClick);
-PostedinfoLink.addEventListener("click", HandlePostedinfoClick);
-FeedbackLink.addEventListener("click", HandleFeedbackClick);
+DeleteButton.addEventListener("click", DeleteAccountClick);

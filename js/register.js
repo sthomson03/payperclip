@@ -29,7 +29,6 @@ let registerForm = document.getElementById("signup-form");
 let RegisterUser = evt => {
     evt.preventDefault();
 
-    // Check if the passwords match
     if (passwordOriginalInput.value !== passwordSecondInput.value) {
         alert("Passwords do not match");
         return;
@@ -45,15 +44,8 @@ let RegisterUser = evt => {
         })
 
         .then(() => {
-            // Redirect after the set operation is complete
             window.location.href = "/index.html";
         })
-    })
-
-    .catch((error) => {
-        alert(error.message);
-        console.log(error.code);
-        console.log(error.message);
     })
 }
 

@@ -24,10 +24,7 @@ const resetPasswordFunction = () => {
 
     sendPasswordResetEmail(auth, emailAddress)
     .then(() => {
-        console.log("Email sent!");
-    })
-    .catch(error => {
-        console.error(error);
+        return;
     })
 }
 

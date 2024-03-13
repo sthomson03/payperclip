@@ -27,6 +27,5 @@ document.addEventListener("DOMContentLoaded", function () {
     prevButton.addEventListener('click', showPrevPhoto);
     nextButton.addEventListener('click', showNextPhoto);
     
-    // Show the initial photo
     showPhoto(currentPhotoIndex);
 });

@@ -41,6 +41,9 @@ function attachExpandListeners() {
 let CreateAnnouncement = evt => {
   evt.preventDefault();
 
+  const userId = auth.currentUser.uid;
+  const selectedGroup = announcementGroup.value;
+
   const newAnnouncementRef = push(ref(db, "AnnouncementList/" + auth.currentUser.uid));
   set(newAnnouncementRef, {
       title: announcementTitle.value,
@@ -49,11 +52,11 @@ let CreateAnnouncement = evt => {
       reactions: announcementReactions.value
   })
   .then(() => {
-      console.log("Announcement Created Successfully!");
+      alert("Announcement Created Successfully!");
+      announcementTitle.value = "";
+      announcementMessage.value = "";
+      fetchAnnouncements(userId, selectedGroup);
   })
-  .catch((error) => {
-      console.error("Error creating announcement: ", error);
-  });
 }
 
 const fetchAnnouncements = (userId, selectedGroup) => {
@@ -86,24 +89,21 @@ const fetchAnnouncements = (userId, selectedGroup) => {
             container.setAttribute('data-announcement-id', announcement.id);
             container.querySelector("h2").innerText = announcement.title;
             container.querySelector("p").innerText = announcement.announcement;
-            container.querySelector('.expand-button').style.display = 'none';
-            container.querySelector('.edit-button').style.display = 'none';
-            container.querySelector('.delete-button').style.display = 'none';
+            container.querySelector('.expand-button').style.display = 'inline';
+            container.querySelector('.edit-button').style.display = 'inline';
+            container.querySelector('.delete-button').style.display = 'inline';
             attachExpandListeners();
           }
         });
       }
     } else {
-      // No announcements at all for this user
       announcementsContainers.forEach(container => {
         container.querySelector("h2").innerText = 'No Announcements Found';
         container.querySelector("p").innerText = '';
         attachExpandListeners();
       });
     }
-  }).catch((error) => {
-    console.error("Error fetching announcements: ", error);
-  });
+  })
 };
 
 auth.onAuthStateChanged(user => {
@@ -120,8 +120,7 @@ auth.onAuthStateChanged(user => {
       document.getElementById('edit-announcement-modal').style.display = 'none';
     });
   } else {
-    console.log("No user signed in.");
-    window.location.href = "index.html"; // Redirect to login page
+    window.location.href = "index.html";
   }
 });
 
@@ -134,7 +133,6 @@ document.addEventListener('click', function(e) {
   if (e.target && e.target.classList.contains('edit-button')) {
       const announcementContainer = e.target.closest('.announcements-container');
       const announcementId = announcementContainer.getAttribute('data-announcement-id');
-      console.log("Editing announcement ID:", announcementId);
 
       const currentTitle = announcementContainer.querySelector("h2").innerText;
       const currentMessage = announcementContainer.querySelector("p").innerText;
@@ -174,7 +172,7 @@ function updateAnnouncement(announcementId, title, announcement, container) {
   const announcementRef = ref(db, `AnnouncementList/${auth.currentUser.uid}/${announcementId}`);
   update(announcementRef, { title, announcement })
     .then(() => {
-      console.log('Announcement updated successfully.');
+      alert('Announcement updated successfully.');
 
       if (container) {
         container.querySelector("h2").innerText = title;
@@ -184,9 +182,6 @@ function updateAnnouncement(announcementId, title, announcement, container) {
 
       document.getElementById('edit-announcement-modal').style.display = 'none';
     })
-    .catch((error) => {
-      console.error('Error updating announcement: ', error);
-    });
 }
 
 function deleteAnnouncement(announcementId, container) {
@@ -194,16 +189,11 @@ function deleteAnnouncement(announcementId, container) {
   
   remove(announcementRef)
     .then(() => {
-      console.log('Announcement deleted successfully.');
-
       if (container) {
         container.querySelector("h2").innerText = "";
         container.querySelector("p").innerText = "";
       }
     })
-    .catch((error) => {
-      console.error('Error deleting announcement: ', error);
-    });
 }
 
 announcementForm.addEventListener("submit", CreateAnnouncement);

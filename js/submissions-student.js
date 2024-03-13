@@ -25,10 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 let CheckCred = () => {
   auth.onAuthStateChanged(user => {
     if (user) {
-      // User is signed in, now safe to display submissions
       displaySubmissions();
     } else {
-      // User is not signed in, redirect to login page
       window.location.href = "index.html";
     }
   });
@@ -47,7 +45,6 @@ inputFile.addEventListener('change', (event) => {
 
 function handleFileUpload(file) {
   const user = auth.currentUser;
-  if (!user) return;
 
   const fileName = submissionTitle.value;
   const fileRef = storageRef(getStorage(app), `student-submissions/${user.uid}/${fileName}`);
@@ -69,37 +66,31 @@ function handleFileUpload(file) {
 
 const displaySubmissions = async () => {
   const user = auth.currentUser;
-  if (!user) return;
   
   const submissionsRef = ref(db, `SubmissionsList/${user.uid}`);
   const snapshot = await get(submissionsRef);
 
   if (snapshot.exists()) {
-      const submissionData = snapshot.val();
-      const submissionArray = Object.values(submissionData).sort((a, b) => b.timestamp - a.timestamp);
-      const submissionContainers = document.querySelectorAll('.prevsubmission-container');
-
-      submissionContainers.forEach((container, index) => {
-          if (submissionArray[index]) {
-              const submission = submissionArray[index];
-              const h2 = container.querySelector('h2');
-              const p = container.querySelector('p');
-              const subDate = new Date(submission.timestamp);
-              var grade;
-              if (grade === undefined) {
-                grade = "Ungraded";
-              }
-              else {
-                grade = submission.grade;
-              }
-              h2.textContent = `${submission.title}`;
-              p.textContent = `Submitted on: ${subDate.toLocaleDateString()} | Grade: ${grade}`;
-          } else {
+    const submissionData = snapshot.val();
+    const submissionArray = Object.entries(submissionData)
+      .sort(([, a], [, b]) => b.timestamp - a.timestamp)
+      .map(([, submission]) => submission);
+    const submissionContainers = document.querySelectorAll('.prevsubmission-container');
+  
+    submissionContainers.forEach((container, index) => {
+        if (submissionArray[index]) {
+            const submission = submissionArray[index];
+            const h2 = container.querySelector('h2');
+            const p = container.querySelector('p');
+            const subDate = new Date(submission.timestamp);
+            const grade = submission.grade ? submission.grade : "Ungraded";
+            h2.textContent = `${submission.title}`;
+            p.textContent = `Submitted on: ${subDate.toLocaleDateString()} | Grade: ${grade}`;
+            container.style.display = 'block';
+        } else {
             container.style.display = 'none';
-          }
-      });
-  } else {
-      console.log("No submissions available.");
+        }
+    });
   }
 };
 
