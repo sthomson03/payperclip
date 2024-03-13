@@ -32,6 +32,7 @@ input {
     border: 1px solid #3F52FF;
     border-radius: 5px;
     width: 100%;
+    max-width: 100%;
     height: 100%;
 }
 
@@ -49,6 +50,7 @@ input {
 
 .navbar {
     width: 100%;
+    max-width: 100%;
     background-color: #C7CCF1;
     display: inline-flex;
     padding-left: 1%;
@@ -83,11 +85,13 @@ button:hover {
 
 .content-container {
     display: flex;
+    width: 100%;
 }
 
 .announcements,
 .submissions,
-.submissions-received {
+.submissions-received,
+.messages {
     display: flex;
     flex-direction: column;
 }
@@ -148,6 +152,12 @@ footer {
     background-color: #333333;
     color: #C7CCF1;
     border: 1px solid #C7CCF1;
+}
+
+.dark-mode #navbar-toggle span,
+.dark-mode #navbar-toggle::before,
+.dark-mode #navbar-toggle::after {
+    background-color: #C7CCF1;
 }
 
 .dark-mode #edit-announcement-form input,
@@ -275,11 +285,13 @@ body.dark-mode .about-navbar .dark-mode-button {
 #registerButton {
     text-align: center;
     width: 100%;
+    max-width: 100%;
 }
 
 .login-button,
 .register-login-input a {
     width: 100%;
+    max-width: 100%;
 }
 
 .register-login-input a,
@@ -314,7 +326,6 @@ body.dark-mode .about-navbar .dark-mode-button {
     margin-left: 10px;
     margin-right: 10px;
 }
-
 
 .about-navbar a:hover,
 button:hover {
@@ -352,6 +363,7 @@ button:hover {
 
 .photo-container {
     width: 100%;
+    max-width: 100%;
     height: 70vh;
     border: 2px solid #3F52FF;
     padding: 1rem 3rem;
@@ -403,16 +415,16 @@ button:hover {
 */
 
 .announcements-title,
-.messages-title,
+.contacts-title,
 .uploadsubmission-title,
 .submissions-received-title {
     text-align: left;
     display: inline-flex;
 }
 
-.contacts-title,
 .recentsubmission-title,
-.feedback-title {
+.feedback-title,
+.messages-title {
     text-align: right;
     display: inline-flex;
 }
@@ -474,11 +486,13 @@ button:hover {
     border-radius: 25px;
 }
 
-.create-announcement {
+.create-announcement,
+.messages {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 100%;
+    max-width: 100%;
 }
 
 #announcement-title-input,
@@ -616,6 +630,7 @@ button:hover {
 
 .prevsubmissions {
     width: 100%;
+    max-width: 100%;
     margin-left: 5%;
     align-items: right;
 }
@@ -628,12 +643,14 @@ button:hover {
 .submission-title input {
     height: auto;
     width: 100%;
+    max-width: 100%;
     text-align: center;
 }
 
 .announcements,
 .submissions,
-.submissions-received {
+.submissions-received,
+.messages {
     width: auto;
 }
 
@@ -717,6 +734,7 @@ button:hover {
 
 .feedback-provided {
     width: 100%;
+    max-width: 100%;
     height: 60vh;
     color: #3F52FF;
     margin-left: 5%;
@@ -727,20 +745,36 @@ button:hover {
 */
 
 .messages {
-    width: 60%;
+    width: 100%;
+    justify-content: right;
+}
+
+.contacts {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 10%;
+    justify-content: left;
+    align-items: left;
+}
+
+.contacts-search {
+    width: 100%;
+    max-width: 100%;
+}
+
+.contacts-search input {
+    width: inherit;
 }
 
 .messages-container {
-    height: 400px;
+    height: 60vh;
+    width: inherit;
+    justify-content: right;
     overflow-y: auto;
     padding-bottom: 3%;
     -ms-overflow-style: none;
     scrollbar-width: none;
     text-align: center;
-}
-
-.messages-container h1 {
-    justify-content: center;
 }
 
 .message-timestamp {
@@ -767,6 +801,8 @@ button:hover {
 .message-input {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    max-width: 100%;
 }
 
 .message-input button {
@@ -775,13 +811,7 @@ button:hover {
 
 .message-contact {
     justify-content: center;
-    margin-bottom: 5%;
-}
-
-.contacts {
-    margin-left: auto;
-    width: 30%;
-    align-items: right;
+    margin-bottom: 3%;
 }
 
 .contact-search {
@@ -789,16 +819,20 @@ button:hover {
 }
 
 .contacts-container {
-    width: auto;
-    height: auto;
+    padding-top: 0;
     padding-bottom: 0;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     text-align: center;
+}
+
+.contacts-list {
+    width: inherit;
 }
 
 #message-contact {
     margin-bottom: 5%;
     justify-content: center;
+    align-items: center;
 }
 
 /*  ------------------------------------------------------------
@@ -807,6 +841,7 @@ button:hover {
 
 .whiteboard {
     width: 100%;
+    max-width: 100%;
 }
 
 /*  ------------------------------------------------------------
@@ -849,6 +884,7 @@ button:hover {
     align-items: center;
     height: 100%;
     width: 100%;
+    max-width: 100%;
 }
 
 .personal-details-background {
@@ -880,11 +916,13 @@ button:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 100%;
     align-items: center;
 }
 
 #detailsForm {
     width: 100%;
+    max-width: 100%;
     align-items: center;
     justify-content: center;
     align-items: center;
@@ -915,6 +953,7 @@ button:hover {
 .current-groups,
 .previous-groups {
     width: 100%;
+    max-width: 100%;
     margin-bottom: 20%;
     text-align: center;
 }
@@ -959,44 +998,104 @@ button:hover {
         align-items: center;
     }
 
+    .logo img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 5%;
+    }
+
     .navbar a,
     .footer-text a,
     .email-noti-footer label,
     .email-noti-footer input[type="checkbox"],
-    .center-buttons button {
+    .center-buttons button,
+    .personal-details-input button,
+    .download-delete-buttons button {
         font-size: smaller;
     }
 
-    .profile-image-signout-margin img,
-    .groups-container {
-        width: 80%;
+    .announcements,
+    .submissions-received,
+    .messages {
+        width: 100%;
+        max-width: 100%;
     }
 
-    .account-container {
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-    }
-
-    .personal-details-input input,
-    .personal-details-input button {
+    .announcements-container,
+    .submissions-received-container,
+    .contacts-container,
+    .messages-container,
+    .profile-background,
+    .personal-details-background,
+    .groups-background {
         width: 90%;
-        margin: 10px auto;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        display: block;
+        margin: 2% auto;
     }
 
-    .personal-details-margin,
-    .groups-margin {
-        float: none;
+    .contacts {
+        margin: 0;
+    }
+
+    .announcements-title,
+    .submissions-received-title,
+    .postedinfo-title,
+    .feedback-title,
+    .contacts-title,
+    .messages-title {
+        display: block;
+        width: 100%;
         text-align: center;
     }
 
-    .email-noti-footer {
+    .create-announcement,
+    .messages,
+    .contacts,
+    .profile-image-signout-margin,
+    .personal-details-margin,
+    .groups-margin {
+        display: flex;
         flex-direction: column;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-image-signout-margin,
+    .personal-details-margin,
+    .groups-margin {
+        margin: 50px 0;
+    }
+
+    #create-announcement-form input,
+    #create-announcement-form select {
+        width: 90%;
+        margin: 5% auto;
+        display: block;
+    }
+
+    .groups-margin {
+        margin: 3%;
+    }
+
+    .form-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .email-noti-footer {
+        display: flex;
+        flex-direction: row;
     }
 
     .email-noti-footer label,
     .email-noti-footer input[type="checkbox"] {
         margin-right: 0;
-        margin-bottom: 5px;
     }
 
     .edit-modal input,
@@ -1006,9 +1105,15 @@ button:hover {
 
     .photo-buttons button,
     .download-delete-buttons button,
-    .post-button button {
+    .post-button button,
+    .personal-details-input button,
+    .center-buttons {
         margin: 5px;
         width: auto;
+    }
+
+    footer {
+        display: none;
     }
 }
 
@@ -1022,7 +1127,7 @@ button:hover {
 
     .logo img {
         width: auto;
-        height: 40px;
+        height: 30px;
     }
 
     .logo {
@@ -1120,17 +1225,5 @@ button:hover {
         width: 90%;
         margin: 0 auto 10px auto;
         display: block;
-    }
-
-    /* Announcements Student Mobile Page Styling */
-    .announcements-title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 5%;
-    }
-    
-    .announcements-title h1 {
-        text-align: center;
     }
 }
