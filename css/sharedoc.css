@@ -47,7 +47,6 @@ input {
     display: inline-flex;
 }
 
-/* add style to navbar */
 .navbar {
     width: 100%;
     background-color: #C7CCF1;
@@ -59,6 +58,10 @@ input {
     align-items: center;
     border: 2px solid #3F52FF;
     transition: background-color 0.75s ease;
+}
+
+#navbar-toggle {
+    display: none;
 }
 
 .navbar a {
@@ -83,7 +86,8 @@ button:hover {
 }
 
 .announcements,
-.postedinfo {
+.submissions,
+.submissions-received {
     display: flex;
     flex-direction: column;
 }
@@ -115,23 +119,7 @@ footer {
     box-shadow: none;
 }
 
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode p,
-.dark-mode .navbar a,
-.dark-mode .about-navbar a,
-.dark-mode .footer-text,
-.dark-mode select {
-    color: #C7CCF1;
-}
-
-.dark-mode .navbar a:hover,
-.dark-mode .about-navbar a:hover {
-    color: #333333;
-}
-
 .dark-mode .announcements button,
-.dark-mode .postedinfo button,
 .dark-mode .announcements-title button,
 .dark-mode .profile-image-signout-margin button,
 .dark-mode .groups-margin button,
@@ -152,25 +140,47 @@ footer {
 .dark-mode .photo-buttons button,
 .dark-mode .message-input button,
 .dark-mode .contacts-container button,
-.dark-mode .uploadsubmission-container button {
+.dark-mode .uploadsubmission-container button,
+.dark-mode #edit-announcement-form input,
+.dark-mode #edit-announcement-form button,
+.dark-mode .submissions-received button,
+.dark-mode .feedback-provided button {
     background-color: #333333;
     color: #C7CCF1;
     border: 1px solid #C7CCF1;
 }
 
-.dark-mode .dark-mode-button {
-    color: #C7CCF1;
+.dark-mode #edit-announcement-form input,
+.dark-mode #edit-announcement-form button {
+    background-color: #666666;
 }
 
 .dark-mode .personal-details-input label,
 .dark-mode .reactions-checkbox label,
+.dark-mode .grade-select-container label,
 .dark-mode .forgotten-link a,
-.dark-mode .footer-text h3 {
+.dark-mode .thumbs-up-count,
+.dark-mode .footer-text h3,
+.dark-mode .create-announcement label,
+.dark-mode .dark-mode-button,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode p,
+.dark-mode .navbar a,
+.dark-mode .about-navbar a,
+.dark-mode .footer-text,
+.dark-mode select {
     color: #C7CCF1;
 }
 
 .dark-mode .forgotten-link a:hover,
-.dark-mode .footer-text h3:hover {
+.dark-mode .footer-text h3:hover,
+.dark-mode .navbar a:hover,
+.dark-mode .about-navbar a:hover,
+body:not(.dark-mode) .navbar .dark-mode-button:hover,
+body:not(.dark-mode) .about-navbar .dark-mode-button:hover,
+body.dark-mode .navbar .dark-mode-button:hover,
+body.dark-mode .about-navbar .dark-mode-button:hover {
     color: white;
 }
 
@@ -178,19 +188,18 @@ footer {
 .dark-mode .login-container,
 .dark-mode .announcements-container,
 .dark-mode .uploadsubmission-container,
-.dark-mode .postedinfo-container,
 .dark-mode .navbar,
 .dark-mode .about-navbar,
 .dark-mode .profile-background,
 .dark-mode .personal-details-background,
 .dark-mode .groups-background,
-.dark-mode .announcement-text-container textarea,
-.dark-mode .manage-group textarea,
 .dark-mode .announcement-text-container input,
 .dark-mode .photo-container,
 .dark-mode .messages-container,
 .dark-mode .contacts-container,
-.dark-mode .prevsubmission-container {
+.dark-mode .prevsubmission-container,
+.dark-mode .submissions-received-container,
+.dark-mode .feedback-provided input {
     background-color: #666666;
     border: 2px solid #C7CCF1;
 }
@@ -205,33 +214,20 @@ footer {
 }
 
 .dark-mode .register-login-input a {
-    text-decoration: none; /* no underline */
+    text-decoration: none;
     color: #C7CCF1;
 }
 
-/* Changes "Dark Mode" navbar text to red when disabled */
 body:not(.dark-mode) .navbar .dark-mode-button,
 body:not(.dark-mode) .about-navbar .dark-mode-button {
     color: #ff6961;
 }
 
-body:not(.dark-mode) .navbar .dark-mode-button:hover,
-body:not(.dark-mode) .about-navbar .dark-mode-button:hover {
-    color: white;
-}
-
-/* Changes "Dark Mode" navbar text to green when enabled */
 body.dark-mode .navbar .dark-mode-button,
 body.dark-mode .about-navbar .dark-mode-button {
     color: #77DD77;
 }
 
-body.dark-mode .navbar .dark-mode-button:hover,
-body.dark-mode .about-navbar .dark-mode-button:hover {
-    color: white;
-}
-
-/* Inverts logo colour when dark mode toggled */
 .dark-mode .logo,
 .dark-mode .register-login-container img {
     filter: invert(100%);
@@ -271,7 +267,7 @@ body.dark-mode .about-navbar .dark-mode-button:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 5%; /* Adjust the value based on your design preference */
+    margin-bottom: 5%;
     width: auto;
 }
 
@@ -288,7 +284,7 @@ body.dark-mode .about-navbar .dark-mode-button:hover {
 
 .register-login-input a,
 .register-login-input a:visited {
-    text-decoration: none; /* no underline */
+    text-decoration: none;
     color: #3F52FF;
 }
 
@@ -296,7 +292,6 @@ body.dark-mode .about-navbar .dark-mode-button:hover {
                         About Page Styling
 */
 
-/* add style to navbar */
 .about-navbar {
     width: inherit;
     background-color: #C7CCF1;
@@ -373,8 +368,8 @@ button:hover {
 
 .photo {
     display: none;
-    flex-direction: column; /* Change to column layout */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column;
+    align-items: center;
 }
 
 .photo img {
@@ -409,19 +404,21 @@ button:hover {
 
 .announcements-title,
 .messages-title,
-.uploadsubmission-title {
+.uploadsubmission-title,
+.submissions-received-title {
     text-align: left;
     display: inline-flex;
 }
 
-.postedinfo-title,
 .contacts-title,
-.recentsubmission-title {
+.recentsubmission-title,
+.feedback-title {
     text-align: right;
     display: inline-flex;
 }
 
-.group-dropdown {
+.group-dropdown,
+.grade-dropdown {
     position: relative;
     display: inline-flex;
     border: none;
@@ -432,9 +429,10 @@ button:hover {
 .announcements-container,
 .messages-container,
 .contacts-container,
-.postedinfo-container,
 .uploadsubmission-container,
-.prevsubmission-container {
+.prevsubmission-container,
+.submissions-received-container,
+.feedback-provided-container {
     display: flex;
     flex-direction: column;
     border: 2px solid #3F52FF;
@@ -459,24 +457,50 @@ button:hover {
 
 .announcements-container,
 .messages-container,
-.uploadsubmission-container {
+.uploadsubmission-container,
+.submissions-received-container {
     height: inherit;
-    text-align: left;
     width: 90vh;
     position: relative;
     border-radius: 100px;
     transition: width 0.75s ease, height 0.75s ease;
 }
 
-.postedinfo-container,
 .contacts-container,
 .create-announcement,
-.prevsubmission-container {
-    height: 10vh;
+.prevsubmission-container,
+.feedback-provided {
     text-align: right;
-    margin-left: auto;
-    width: 40%;
     border-radius: 25px;
+}
+
+.create-announcement {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+#announcement-title-input,
+#announcement-message-input {
+    margin-bottom: 5%;
+}
+
+#create-announcement-form {
+    width: inherit;
+    height: inherit;
+}
+
+.create-announcement .form-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-announcement input,
+.create-announcement .post-button button {
+    margin-left: auto;
+    display: block;
 }
 
 .thumbs-up-count {
@@ -489,7 +513,6 @@ button:hover {
 
 .announcements button,
 .message-input button,
-.postedinfo button,
 .contacts button,
 .announcements-title button,
 .profile-image-signout-margin button,
@@ -502,7 +525,10 @@ button:hover {
 .login-container button,
 .post-button button,
 .photo-buttons button,
-.uploadsubmission-container button {
+.uploadsubmission-container button,
+.submissions-received button,
+.download-grade-button-container button,
+.feedback-provided button {
     display: inline-flex;
     text-align: center;
     background-color: #C7CCF1;
@@ -513,7 +539,6 @@ button:hover {
 }
 
 .announcements button:hover,
-.postedinfo button:hover,
 .announcements-title button:hover,
 .profile-image-signout-margin button:hover,
 .groups-margin button:hover,
@@ -525,7 +550,10 @@ button:hover {
 .register-login-input a:hover,
 .post-button button:hover,
 .photo-buttons button:hover,
-.uploadsubmission-container button:hover {
+.uploadsubmission-container button:hover,
+.submissions-received button:hover,
+.download-grade-button-container button:hover,
+.feedback-provided button:hover {
     color: white;
 }
 
@@ -549,33 +577,12 @@ button:hover {
     color: #666666;
 }
 
-.postedinfo button {
-    display: inline-flex;
-    position: absolute;
-    right: 5%;
-    top: 75%;
-}
-
 /*  ------------------------------------------------------------
                         Announcements Staff Page Styling
 */
 
-.announcement-text-container textarea,
-.manage-group textarea {
-    text-align: center;
-    margin-bottom: 2%;
-    width: 80%;
-    height: 100px;
-    border: 2px solid #3F52FF;
-    border-radius: 25px;
-    overflow: auto;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    resize: none; /*remove the resize handle on the bottom right*/
-}
-
-.announcement-text-container input {
+.announcement-text-container input,
+.feedback-provided input {
     border: 2px solid #3F52FF;
     border-radius: 25px;
     margin-bottom: 2%;
@@ -592,37 +599,29 @@ button:hover {
     align-items: right;
 }
 
-.post-button button {
-    margin-top: 2%;
-    padding: 2%;
+.create-announcement .form-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form-footer label,
+.post-button {
+    padding-left: 2%;
 }
 
 /*  ------------------------------------------------------------
                         Submissions Page Styling
 */
 
-.submissions {
-    height: auto;
-    width: 100%;
-}
-
 .prevsubmissions {
-    height: auto;
     width: 100%;
+    margin-left: 5%;
     align-items: right;
 }
 
-.uploadsubmission-container {
-    height: auto;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 5%;
-}
-
 .submission-title {
-    width: 100%;
+    width: auto;
     text-align: center;
 }
 
@@ -632,13 +631,18 @@ button:hover {
     text-align: center;
 }
 
+.announcements,
+.submissions,
+.submissions-received {
+    width: auto;
+}
+
 .submission-upload {
-    width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    margin-bottom: 2%;
 }
 
 .upload-container {
@@ -649,9 +653,8 @@ button:hover {
     text-align: center;
     border: 2px #3F52FF dashed;
     background: #F0F8FF;
-    border-radius: 10px;
+    border-radius: 50px;
     padding: 3%;
-    height: auto;
 }
 
 .upload-container img {
@@ -661,8 +664,62 @@ button:hover {
 }
 
 .prevsubmission-container {
-    justify-content: center;
+    display: flex;
     text-align: center;
+}
+
+/*  ------------------------------------------------------------
+                        Feedback Page Styling
+*/
+
+.load-next-prev-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+#newer-sub-button {
+    justify-self: start;
+}
+
+#older-sub-button {
+    justify-self: end;
+}
+
+#feedback-form {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    justify-content: right;
+}
+
+.grade-select-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.grade-select-container label {
+    justify-content: flex-start;
+}
+
+.grade-select-container button {
+    justify-content: flex-end;
+}
+
+#feedback-message-input {
+    height: 50vh;
+    margin-bottom: 10px;
+    width: inherit;
+}
+
+.feedback-provided {
+    width: 100%;
+    height: 60vh;
+    color: #3F52FF;
+    margin-left: 5%;
 }
 
 /*  ------------------------------------------------------------
@@ -756,24 +813,57 @@ button:hover {
                         Account Page Styling
 */
 
-.account-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create three equal-width columns */
-    grid-gap: 5%; /* Adjust the spacing between grid items */
-    height: 95%;
+.profile-image-signout-margin,
+.personal-details-margin,
+.groups-margin {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-image-signout-margin {
-    align-items: center;
-    text-align: center;
-    height: inherit;
+    justify-content: flex-start;
+    align-items: left;
+    margin-right: 5%;
 }
 
-.profile-image-signout-margin img {
+.personal-details-margin {
+    justify-content: center;
+    align-items: center;
+}
+
+.groups-margin {
+    justify-content: flex-end;
+    align-items: right;
+    margin-left: 5%;
+}
+
+.profile-background,
+.personal-details-background,
+.groups-background {
     display: flex;
     flex-direction: column;
-    padding-bottom: 5%;
-    transform: translate(50%, 0%); /* Center the image using transform */
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.personal-details-background {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#profile-pic {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    justify-content: center;
+    margin-top: 15%;
+    margin-bottom: 25%;
 }
 
 .center-buttons {
@@ -786,37 +876,47 @@ button:hover {
     margin-bottom: 5%;
 }
 
-.personal-details-margin {
-    align-items: center;
-    text-align: center;
-    height: inherit;
-}
-
 .personal-details-input {
-    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     align-items: center;
-    width: inherit;
 }
 
-.personal-details-input label {
-    display: inline-flex;
-    text-align: center;
-    white-space: nowrap;
-    gap: 10px;
+#detailsForm {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.personal-details-input input {
+    width: 90%;
+    margin: 5% auto;
+    height: auto;
+}
+
+.personal-details-input button {
+    margin-top: 5%;
+}
+
+.email-noti-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
 }
 
-.groups-margin {
-    float: right;
-    text-align: center;
-    height: inherit;
+.email-noti-footer input[type="checkbox"] {
+    width: auto;
+    margin-left: 10px;
 }
 
 .current-groups,
 .previous-groups {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
-    grid-gap: 5%; /* Adjust the spacing between grid items */
+    width: 100%;
+    margin-bottom: 20%;
+    text-align: center;
 }
 
 .register-container,
@@ -840,15 +940,197 @@ button:hover {
     border: 2px solid #3F52FF;
     border-radius: 25px;
     background-color: white;
-    margin-bottom: 2%;
-    margin-bottom: 15%;
+    justify-content: center;
+    align-items: center;
 }
 
-.personal-details-input button {
-    margin-top: 5%;
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 767px) {
+    html {
+        height: 100vh;
+    }
+
+    .header-container,
+    .title-container,
+    .navbar,
+    .content-container,
+    .account-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a,
+    .footer-text a,
+    .email-noti-footer label,
+    .email-noti-footer input[type="checkbox"],
+    .center-buttons button {
+        font-size: smaller;
+    }
+
+    .profile-image-signout-margin img,
+    .groups-container {
+        width: 80%;
+    }
+
+    .account-container {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+
+    .personal-details-input input,
+    .personal-details-input button {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .personal-details-margin,
+    .groups-margin {
+        float: none;
+        text-align: center;
+    }
+
+    .email-noti-footer {
+        flex-direction: column;
+    }
+
+    .email-noti-footer label,
+    .email-noti-footer input[type="checkbox"] {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .edit-modal input,
+    .edit-modal button {
+        width: 90%;
+    }
+
+    .photo-buttons button,
+    .download-delete-buttons button,
+    .post-button button {
+        margin: 5px;
+        width: auto;
+    }
 }
 
-.download-delete-buttons button {
-    padding: 2%;
-    margin: 2%;
+@media (max-width: 480px) {
+    .header-container {
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .logo img {
+        width: auto;
+        height: 40px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .navbar {
+        display: none;
+    }
+
+    #navbar-toggle {
+        margin-right: 0;
+        align-self: center;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+
+    #navbar-toggle::before,
+    #navbar-toggle::after,
+    #navbar-toggle span {
+        content: "";
+        display: block;
+        background-color: #3F52FF;
+        height: 2px;
+        width: 70%;
+        position: absolute;
+        transition: 0.3s;
+    }
+
+    #navbar-toggle::before {
+        top: 25%;
+    }
+
+    #navbar-toggle::after {
+        bottom: 25%;
+    }
+
+    #navbar-toggle span {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Register Mobile Page Styling */
+    .register-container {
+        margin-top: 40%;
+        width: 90%;
+    }
+    
+    /* Login Mobile Page Styling */
+    .logo {
+        margin: 0 auto;
+        padding: 5px 0;
+    }
+
+    .register-login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        margin-top: 50%;
+        width: 90%;
+    }
+
+    .form-footer {
+        flex-direction: column;
+    }
+
+    .form-footer label,
+    .form-footer .post-button {
+        padding-left: 0;
+    }
+
+    /* Forgotten Password Mobile Page Styling */
+    .personal-details-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #reset-button {
+        text-align: center;
+        width: 90%;
+        margin: 0 auto 10px auto;
+        display: block;
+    }
+
+    /* Announcements Student Mobile Page Styling */
+    .announcements-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5%;
+    }
+    
+    .announcements-title h1 {
+        text-align: center;
+    }
 }
