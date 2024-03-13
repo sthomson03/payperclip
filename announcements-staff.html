@@ -26,24 +26,18 @@
             </div>
         </div>
 
-        <div class="title-container">
-            <div class="announcements-title">
-                <h1>Your Announcements</h1>
-                <select name="group-dropdown" class="group-dropdown">
-                    <option value="group1">Group 1</option>
-                    <option value="group2">Group 2</option>
-                    <option value="group3">Group 3</option>
-                    <option value="group4">Group 4</option>
-                </select>
-            </div>
-
-            <div class="postedinfo-title">
-                <h1>Create Announcement</h1>
-            </div>
-        </div>
-
         <div class="content-container">
             <div class="announcements">
+                <div class="announcements-title">
+                    <h1>Your Announcements</h1>
+                    <select name="group-dropdown" class="group-dropdown">
+                        <option value="group1">Group 1</option>
+                        <option value="group2">Group 2</option>
+                        <option value="group3">Group 3</option>
+                        <option value="group4">Group 4</option>
+                    </select>
+                </div>
+                
                 <div id="edit-announcement-modal" class="edit-modal" style="display: none;">
                     <div class="edit-modal-content">
                         <form id="edit-announcement-form">
@@ -105,6 +99,10 @@
             </div>
             
             <div class="create-announcement">
+                <div class="postedinfo-title">
+                    <h1>Create Announcement</h1>
+                </div>
+
                 <form id="create-announcement-form">
                     <div class="announcement-text-container">
                         <input id="announcement-title-input" placeholder="Enter announcement title">
