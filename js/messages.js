@@ -58,8 +58,8 @@ const displayContacts = async (filteredContactsArray) => {
         const button = contactsContainers[i].querySelector('button.message-contact');
         h2.textContent = `${contact.fullname} | ${contact.username}`;
         button.setAttribute('data-uid', contact.id);
-        button.style.display = 'block';
-        contactsContainers[i].style.display = 'flex';
+        button.style.display = 'center';
+        contactsContainers[i].style.display = 'block';
 
         button.removeEventListener('click', handleSendMessageClick);
         button.addEventListener('click', handleSendMessageClick);
