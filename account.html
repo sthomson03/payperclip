@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
         <link rel="stylesheet" href="/css/sharedoc.css">
         <script src="/js/sharedoc.js"></script>
         
@@ -17,6 +18,10 @@
                 <img src="/images/Company Logo.png" alt="Payperclip Sharedoc" width="50%" height="50%">
             </div>
 
+            <button id="navbar-toggle" type="button">
+                <span></span>
+            </button>
+
             <div class="navbar">
             </div>
         </div>
@@ -25,7 +30,7 @@
             <h1>Your Account</h1>
         </div>
 
-        <div class="account-container">
+        <div class="content-container">
             <div class="profile-image-signout-margin">
                 <div class="profile-background">
                     <h2>Profile</h2>
@@ -47,11 +52,15 @@
                     
                     <form id="detailsForm">
                         <div class="personal-details-input">
+                            <input type="text" id="updated-fullname" placeholder="Full Name">
+                        </div>
+                        
+                        <div class="personal-details-input">
                             <input type="text" id="updated-username" placeholder="Username">
                         </div>
 
                         <div class="personal-details-input">
-                            <input type="email" id="updated-email" name="email" placeholder="Email">
+                            <input type="email" id="updated-email" name="email" placeholder="E-mail Address">
                         </div>
 
                         <div class="personal-details-input">
@@ -59,11 +68,7 @@
                         </div>
 
                         <div class="personal-details-input">
-                            <input type="text" id="updated-fullname" placeholder="Full Name">
-                        </div>
-
-                        <div class="personal-details-input">
-                            <input type="tel" id="updated-telno" placeholder="Tel. No">
+                            <input type="tel" id="updated-telno" placeholder="Phone Number">
                         </div>
 
                         <div class="personal-details-input">
@@ -71,9 +76,10 @@
                         </div> 
                         
                         <div class="personal-details-input">
-                            <label>Email Notifications?:
+                            <div class="email-noti-footer">
+                                <label>Notifications?</label>
                                 <input type="checkbox" id="updated-notifications">
-                            </label>
+                            </div>
                         </div>
 
                         <div class="personal-details-input">
@@ -85,27 +91,19 @@
 
             <div class="groups-margin">
                 <div class="groups-background">
-                    <h2>Your Current Groups</h2>
+                    <h2>Your Current School</h2>
 
                     <div class="current-groups">
-                        <div class="groups-container">
-                            <p>Group 1</p>
-                        </div>
-
-                        <div class="groups-container">
-                            <p>Group 2</p>
+                        <div id="current-group" class="groups-container">
+                            <p></p>
                         </div>
                     </div>
 
-                    <h2>Your Previous Groups</h2>
+                    <h2>Your Previous School</h2>
 
                     <div class="previous-groups">
-                        <div class="groups-container">
-                            <p>Group 1</p>
-                        </div>
-
-                        <div class="groups-container">
-                            <p>Group 2</p>
+                        <div id="prev-group" class="groups-container">
+                            <p></p>
                         </div>
                     </div>
 

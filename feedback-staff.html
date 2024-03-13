@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
         <link rel="stylesheet" href="/css/sharedoc.css">
         <script src="/js/sharedoc.js"></script>
 
@@ -18,73 +19,78 @@
                 <img src="/images/Company Logo.png" alt="Payperclip Sharedoc" width="50%" height="50%">
             </div>
 
+            <button id="navbar-toggle" type="button">
+                <span></span>
+            </button>
+
             <div class="navbar">
             </div>
         </div>
 
         <div class="title-container">
-            <div class="announcements-title">
-                <h1>Your Feedback</h1>
+            <div class="submissions-received-title">
+                <h1>Submissions Received</h1>
             </div>
 
-            <div class="postedinfo-title">
-                <h1>Current Grades</h1>
+            <div class="feedback-title">
+                <h1>Provide Feedback</h1>
             </div>
         </div>
 
         <div class="content-container">
-            <div class="announcements">
-                <div class="announcements-container">
-                    <h2>Lorem Ipsum</h2>  
-                    
-                    <div class="expand-react-button-container">    
-                        <button type="button" class="expand-button">Expand</button>
-                        <button type="button">React</button>
-                    </div>
+            <div class="submissions-received">
+                <div id="sub-received-container" class="submissions-received-container">
+                    <h2></h2>  
+                    <p></p>
 
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                    <div class="download-grade-button-container">    
+                        <button type="button" id="download-button" class="download-file-button">Download File</button>
+                        <button type="button" id="grade-button" class="grade-button">Add Grade</button>
+                    </div>
                 </div>
 
-                <div class="announcements-container">
-                    <h2>Lorem Ipsum</h2>   
+                <div id="sub-received-container" class="submissions-received-container">
+                    <h2></h2>
+                    <p></p>   
 
-                    <div class="expand-react-button-container">   
-                        <button type="button" class="expand-button">Expand</button>
-                        <button type="button">React</button>
+                    <div class="download-grade-button-container">   
+                        <button type="button" id="download-button" class="download-file-button">Download File</button>
+                        <button type="button" id="grade-button" class="grade-button">Add Grade</button>
                     </div>
-
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
                 </div>
 
-                <div class="announcements-container">
-                    <h2>Lorem Ipsum</h2>   
+                <div id="sub-received-container" class="submissions-received-container">
+                    <h2></h2>   
+                    <p></p>
 
-                    <div class="expand-react-button-container">   
-                        <button type="button" class="expand-button">Expand</button>
-                        <button type="button">React</button>
+                    <div class="download-grade-button-container">   
+                        <button type="button" id="download-button" class="download-file-button">Download File</button>
+                        <button type="button" id="grade-button" class="grade-button">Add Grade</button>
                     </div>
-
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
                 </div>
+                <div class="load-next-prev-buttons">
+                    <button type="button" id="newer-sub-button" class="load-submissions-button">Load Newer Submissions</button>
+                    <button type="button" id="older-sub-button" class="load-submissions-button">Load Older Submissions</button>
+                </div>        
             </div>
             
-            <div class="postedinfo">
-                <div class="postedinfo-container">
-                    <h2>Lorem Ipsum</h2>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-                </div>
-
-                <div class="postedinfo-container">
-                    <h2>Lorem Ipsum</h2>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-                </div>
-
-                <div class="postedinfo-container">
-                    <h2>Lorem Ipsum</h2>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-                </div>
-  
-                <button type="button">Load More</button>
+            <div class="feedback-provided">
+                <form class="feedback-form" id="feedback-form">
+                    <p></p>    
+                    <input id="feedback-message-input" class="feedback-message-input" placeholder="Start typing here...">
+                    <div class="grade-select-container">
+                        <label>Grade:
+                            <select id="grade-dropdown" name="grade-dropdown" class="grade-dropdown">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="Fail">Fail</option>
+                            </select>
+                            <button type="button" id="submit-feedback-button">Submit</button>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
 
