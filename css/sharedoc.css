@@ -169,6 +169,7 @@ footer {
 .dark-mode .reactions-checkbox label,
 .dark-mode .grade-select-container label,
 .dark-mode .forgotten-link a,
+.dark-mode .forgotten-link a:visited,
 .dark-mode .thumbs-up-count,
 .dark-mode .footer-text h3,
 .dark-mode .create-announcement label,
@@ -286,6 +287,10 @@ body.dark-mode .about-navbar .dark-mode-button {
     text-align: center;
     width: 100%;
     max-width: 100%;
+}
+
+#reset-email {
+    text-align: center;
 }
 
 .login-button,
@@ -586,9 +591,18 @@ button:hover {
     margin-bottom: 2%;
 }
 
+.forgotten-link a {
+    color: #3F52FF;
+}
+
 .forgotten-link a:hover,
 .footer-text h3:hover {
-    color: #666666;
+    color: lightblue;
+}
+
+.forgotten-link a,
+.forgotten-link a:visited {
+    text-decoration: none;
 }
 
 /*  ------------------------------------------------------------
@@ -1022,8 +1036,13 @@ button:hover {
         max-width: 100%;
     }
 
+    .prevsubmissions {
+        margin: 0;
+    }
+
     .announcements-container,
     .submissions-received-container,
+    .uploadsubmission-container,
     .contacts-container,
     .messages-container,
     .profile-background,
@@ -1037,12 +1056,15 @@ button:hover {
         margin: 2% auto;
     }
 
-    .contacts {
+    .contacts,
+    .feedback-provided {
         margin: 0;
     }
 
     .announcements-title,
     .submissions-received-title,
+    .uploadsubmission-title,
+    .recentsubmission-title,
     .postedinfo-title,
     .feedback-title,
     .contacts-title,
@@ -1057,7 +1079,8 @@ button:hover {
     .contacts,
     .profile-image-signout-margin,
     .personal-details-margin,
-    .groups-margin {
+    .groups-margin,
+    .submissions {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -1121,8 +1144,13 @@ button:hover {
     .header-container {
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
+        margin: 0;
         width: 100%;
+    }
+
+    .navbar {
+        padding: 0;
+        margin: 0;
     }
 
     .logo img {
