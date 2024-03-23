@@ -36,6 +36,16 @@ input {
     height: 100%;
 }
 
+textarea {
+    color: #3F52FF;
+    width: 50vh;
+    border: 2px solid #3F52FF;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    resize: none;
+}
+
 .header-container {
     display: flex;
     align-items: center;
@@ -148,7 +158,8 @@ footer {
 .dark-mode #edit-announcement-form input,
 .dark-mode #edit-announcement-form button,
 .dark-mode .submissions-received button,
-.dark-mode .feedback-provided button {
+.dark-mode .feedback-provided button,
+.dark-mode textarea {
     background-color: #333333;
     color: #C7CCF1;
     border: 1px solid #C7CCF1;
@@ -210,7 +221,8 @@ body.dark-mode .about-navbar .dark-mode-button:hover {
 .dark-mode .contacts-container,
 .dark-mode .prevsubmission-container,
 .dark-mode .submissions-received-container,
-.dark-mode .feedback-provided input {
+.dark-mode .feedback-provided input,
+.dark-mode textarea {
     background-color: #666666;
     border: 2px solid #C7CCF1;
 }
@@ -1141,6 +1153,10 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+    textarea {
+        margin: 0;
+    }
+
     .header-container {
         justify-content: space-between;
         align-items: center;
